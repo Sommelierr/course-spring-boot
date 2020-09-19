@@ -1,10 +1,12 @@
 package by.s0mmelier.models;
 
 import by.s0mmelier.collections.AlcoholCollection;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.PackagePrivate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,4 +50,11 @@ public class Alcohol{
 
     @OneToMany(fetch = FetchType.EAGER)
     List<Comment> comments;
+
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(	name = "alcohol_likes",
+            joinColumns = @JoinColumn(name = "alcohol_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    List<User> likes = new ArrayList<>();
 }

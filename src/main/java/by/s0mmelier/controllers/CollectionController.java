@@ -1,15 +1,18 @@
 package by.s0mmelier.controllers;
 
+import by.s0mmelier.Dto.CollectionDto;
 import by.s0mmelier.models.Theme;
 import by.s0mmelier.service.*;
 import by.s0mmelier.Dto.CollectionBitMaskDto;
 import by.s0mmelier.collections.Collection;
 import by.s0mmelier.payload.request.CollectionRequest;
 import by.s0mmelier.repository.ThemeRepository;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -42,7 +45,7 @@ public class CollectionController {
 
     @GetMapping("{id}/create")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-    public boolean createCollection(){
+    public void createCollection() throws IOException {
         Theme themeBooks = new Theme();
         themeBooks.setName("Books");
         if(!themeRepository.existsByName("Books")) themeRepository.save(themeBooks);
@@ -57,7 +60,6 @@ public class CollectionController {
         if(!themeRepository.existsByName("Marks")){
             themeRepository.save(themeMarks);
         }
-        return true;
     }
 
     @PostMapping("{id}/create")
@@ -73,13 +75,12 @@ public class CollectionController {
     }
 
     @GetMapping("user/{userId}/{collectionType}/{collectionId}")
-    public Collection getCollection(@PathVariable("userId") long userId,
-                                    @PathVariable("collectionId") long collectionId,
-                                    @PathVariable("collectionType") String collectionType){
-        Collection collection;
-        if(collectionType.equals("bc")) return bookCollectionService.getBookCollection(collectionId);
-        else if(collectionType.equals("ac")) return alcoholCollectionService.getAlcoholCollection(collectionId);
-        else return markCollectionService.getMarkCollection(collectionId);
+    public CollectionDto getCollection(@PathVariable("userId") long userId,
+                                       @PathVariable("collectionId") long collectionId,
+                                       @PathVariable("collectionType") String collectionType){
+        if(collectionType.equals("bc")) return bookCollectionService.getBookCollectionDto(collectionId);
+        if(collectionType.equals("ac")) return alcoholCollectionService.getAlcoholCollectionDto(collectionId);
+        else return null; //markCollectionService.getMarkCollection(collectionId);
     }
 
 
@@ -142,6 +143,4 @@ public class CollectionController {
         bitMaskDto.setBitMask(alcoholCollectionService.getAlcoholCollection(collectionId).getBitMask());
         return bitMaskDto;
     }
-
-
 }

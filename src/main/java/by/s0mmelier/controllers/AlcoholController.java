@@ -41,7 +41,7 @@ public class AlcoholController {
         alcoholService.saveAlcohol(alcohol);
     }
 
-    @RequestMapping(value = "alcohol/{collectionId}/{alcoholId}", //
+    @RequestMapping(value = "alcohol/{alcoholId}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     @ResponseBody

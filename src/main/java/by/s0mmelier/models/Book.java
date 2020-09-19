@@ -43,9 +43,6 @@ public class Book{
     long bitMask;
     long countOfLikes;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    List<Comment> comments;
-
     @ManyToOne(fetch = FetchType.EAGER)
     BookCollection bookCollection;
 

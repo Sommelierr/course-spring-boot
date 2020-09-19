@@ -7,8 +7,21 @@ import java.util.Optional;
 
 public class UserDto {
     private long id;
-    public UserDto(Optional<User> user){
-        this.id = user.get().getId();
+    private String name;
+    private boolean blocked;
+    private boolean checked;
+    public UserDto(User user){
+        this.id = user.getId();
+        this.name = user.getUsername();
+        this.blocked = user.isBlocked();
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     public long getId() {
@@ -17,6 +30,22 @@ public class UserDto {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
     @Override

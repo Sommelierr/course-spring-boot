@@ -35,12 +35,19 @@ public class TestController {
 		return "Public Content.";
 	}
 
+	@GetMapping("/user/{id}/status")
+	public boolean isBlocked(@PathVariable("id") Long id){
+		System.out.println(userService.getUserById(id).isBlocked());
+		return userService.getUserById(id).isBlocked();
+	}
+
 	@GetMapping("/user/{id}")
 	public CollectionsListDto userAccess(@PathVariable("id") Long id) {
 		CollectionsListDto collectionsListDto = new CollectionsListDto();
 		collectionsListDto.setAlcoholCollections(userService.getUserById(id).getAlcoholCollections());
 		collectionsListDto.setBookCollections(userService.getUserById(id).getBookCollections());
 		collectionsListDto.setMarkCollections(userService.getUserById(id).getMarkCollections());
+		collectionsListDto.setBlocked(userService.getUserById(id).isBlocked());
 		return collectionsListDto;
 	}
 

@@ -1,5 +1,6 @@
 package by.s0mmelier.service;
 
+import by.s0mmelier.Dto.BookCollectionDto;
 import by.s0mmelier.collections.BookCollection;
 import by.s0mmelier.models.Book;
 import by.s0mmelier.repository.BookCollectionRepository;
@@ -63,5 +64,17 @@ public class BookCollectionService {
 
     public void deleteBookCollection(long id){
         bookCollectionRepository.deleteById(id);
+    }
+
+    public BookCollectionDto getBookCollectionDto(long collectionId){
+        BookCollection collection = getBookCollection(collectionId);
+        BookCollectionDto collectionDto = new BookCollectionDto();
+        collectionDto.setName(collection.getName());
+        collectionDto.setBitMask(collection.getBitMask());
+        collectionDto.setImage(collection.getImage());
+        collectionDto.setDescription(collection.getDescription());
+        collectionDto.setBooks(collection.getBooks());
+        collectionDto.setBlocked(collection.getUser().isBlocked());
+        return collectionDto;
     }
 }

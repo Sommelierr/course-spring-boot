@@ -16,9 +16,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(	name = "c_user",
-		uniqueConstraints = { 
+		uniqueConstraints = {
 			@UniqueConstraint(columnNames = "username"),
-			@UniqueConstraint(columnNames = "email") 
+			@UniqueConstraint(columnNames = "email")
 		})
 public class User {
 	@Id
@@ -39,6 +39,7 @@ public class User {
 	private String password;
 
 	boolean status;
+	private boolean blocked;
 
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "c_user_id")
@@ -53,8 +54,8 @@ public class User {
 	private List<MarkCollection> markCollections = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(	name = "user_roles", 
-				joinColumns = @JoinColumn(name = "user_id"), 
+	@JoinTable(	name = "user_roles",
+				joinColumns = @JoinColumn(name = "user_id"),
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
@@ -131,5 +132,19 @@ public class User {
 		this.markCollections = markCollections;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
 
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public boolean isBlocked() {
+		return blocked;
+	}
+
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
+	}
 }

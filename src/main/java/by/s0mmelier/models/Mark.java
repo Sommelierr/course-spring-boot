@@ -44,9 +44,6 @@ public class Mark {
     long countOfLikes;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     MarkCollection markCollection;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    List<Comment> comments;
 }

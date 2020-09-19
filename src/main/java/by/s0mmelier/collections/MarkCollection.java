@@ -32,7 +32,7 @@ public class MarkCollection extends Collection{
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     Image image;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "c_mark_id")
     List<Mark> marks;
 

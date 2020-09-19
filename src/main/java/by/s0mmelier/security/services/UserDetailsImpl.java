@@ -23,6 +23,8 @@ public class UserDetailsImpl implements UserDetails {
 
 	private String email;
 
+	boolean blocked;
+
 	@JsonIgnore
 	private String password;
 
@@ -31,12 +33,13 @@ public class UserDetailsImpl implements UserDetails {
 	public UserDetailsImpl(){}
 
 	public UserDetailsImpl(Long id, String username, String email, String password,
-			Collection<? extends GrantedAuthority> authorities) {
+			Collection<? extends GrantedAuthority> authorities, boolean blocked) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.authorities = authorities;
+		this.blocked = blocked;
 	}
 
 	public static UserDetailsImpl build(User user) {
@@ -45,11 +48,11 @@ public class UserDetailsImpl implements UserDetails {
 				.collect(Collectors.toList());
 
 		return new UserDetailsImpl(
-				user.getId(), 
-				user.getUsername(), 
+				user.getId(),
+				user.getUsername(),
 				user.getEmail(),
-				user.getPassword(), 
-				authorities);
+				user.getPassword(),
+				authorities, user.isBlocked());
 	}
 
 	@Override
@@ -93,6 +96,14 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	public boolean isBlocked() {
+		return blocked;
+	}
+
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package by.s0mmelier.service;
 
+import by.s0mmelier.Dto.AlcoholCollectionDto;
+import by.s0mmelier.Dto.BookCollectionDto;
 import by.s0mmelier.payload.request.CollectionRequest;
 import by.s0mmelier.collections.AlcoholCollection;
 import by.s0mmelier.models.Alcohol;
@@ -63,5 +65,17 @@ public class AlcoholCollectionService {
 
     public void deleteAlcoholCollection(long id){
         alcoholCollectionRepository.deleteById(id);
+    }
+
+    public AlcoholCollectionDto getAlcoholCollectionDto(long collectionId){
+        AlcoholCollection collection = getAlcoholCollection(collectionId);
+        AlcoholCollectionDto collectionDto = new AlcoholCollectionDto();
+        collectionDto.setName(collection.getName());
+        collectionDto.setBitMask(collection.getBitMask());
+        collectionDto.setImage(collection.getImage());
+        collectionDto.setDescription(collection.getDescription());
+        collectionDto.setAlcohols(collection.getAlcohols());
+        collectionDto.setBlocked(collection.getUser().isBlocked());
+        return collectionDto;
     }
 }
