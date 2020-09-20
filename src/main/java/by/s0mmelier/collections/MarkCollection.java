@@ -4,6 +4,7 @@ import by.s0mmelier.models.Image;
 import by.s0mmelier.models.Mark;
 import by.s0mmelier.models.Theme;
 import by.s0mmelier.models.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.PackagePrivate;
 
@@ -33,10 +34,11 @@ public class MarkCollection extends Collection{
     Image image;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "c_mark_id")
+    @JoinColumn(name = "mark_collection_id")
     List<Mark> marks;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+            @JsonIgnore
 //    @JoinColumn(name = "c_user_id")
 //    @OnDelete(action = OnDeleteAction.CASCADE)
     User user;

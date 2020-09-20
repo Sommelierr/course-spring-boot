@@ -29,6 +29,7 @@ public class LikeController {
     @Autowired
     AlcoholService alcoholService;
 
+
     @PostMapping("/like")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public void like(@PathVariable("userId") long userId,
@@ -37,14 +38,18 @@ public class LikeController {
         if(collectionType.equals("bc")) {
             Optional<Book> book = bookService.getBook(itemId);
             User user = userService.getUserById(userId);
-            book.get().getLikes().add(user);
+            user.getLikeBooks().add(book.get());
+            book.get().getUsersLike().add(user);
             bookService.saveBook(book.get());
+            userService.saveUser(user);
         }
-        if(collectionType.equals("ac")){
+        if(collectionType.equals("ac")) {
             Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
             User user = userService.getUserById(userId);
-            alcohol.get().getLikes().add(user);
+            user.getLikeAlcohols().add(alcohol.get());
+            alcohol.get().getUsersLike().add(user);
             alcoholService.saveAlcohol(alcohol.get());
+            userService.saveUser(user);
         }
     }
 
@@ -54,9 +59,9 @@ public class LikeController {
                                        @PathVariable("collectionType") String collectionType,
                                        @PathVariable("itemId") long itemId) {
         LikeStatusDto likeStatusDto = new LikeStatusDto();
-        if(collectionType.equals("bc")){
-        Optional<Book> book = bookService.getBook(itemId);
-        for(User user : book.get().getLikes()) if(userId == user.getId()) likeStatusDto.setStatus(true);
+        if(collectionType.equals("bc")) {
+            Optional<Book> book = bookService.getBook(itemId);
+            for (User user : book.get().getUsersLike()) if (userId == user.getId()) likeStatusDto.setStatus(true);
         }
         if(collectionType.equals("ac")){
             Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
@@ -64,24 +69,24 @@ public class LikeController {
         }
         return likeStatusDto;
     }
-
-    @PostMapping("/unlike")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-    public void unlike(@PathVariable("userId") long userId,
-                        @PathVariable("collectionType") String collectionType,
-                        @PathVariable("itemId") long itemId){
-        if(collectionType.equals("bc")) {
-            Optional<Book> book = bookService.getBook(itemId);
-            User user = userService.getUserById(userId);
-            book.get().getLikes().remove(user);
-            bookService.saveBook(book.get());
-        }
-        if(collectionType.equals("ac")){
-            Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
-            User user = userService.getUserById(userId);
-            alcohol.get().getLikes().remove(user);
-            alcoholService.saveAlcohol(alcohol.get());
-        }
-    }
+//
+//    @PostMapping("/unlike")
+//    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+//    public void unlike(@PathVariable("userId") long userId,
+//                        @PathVariable("collectionType") String collectionType,
+//                        @PathVariable("itemId") long itemId){
+//        if(collectionType.equals("bc")) {
+//            Optional<Book> book = bookService.getBook(itemId);
+//            User user = userService.getUserById(userId);
+//            book.get().getLikes().getUsersLike().remove(user);
+//            bookService.saveBook(book.get());
+//        }
+//        if(collectionType.equals("ac")){
+//            Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
+//            User user = userService.getUserById(userId);
+//            alcohol.get().getLikes().remove(user);
+//            alcoholService.saveAlcohol(alcohol.get());
+//        }
+//    }
 
 }

@@ -4,6 +4,7 @@ import by.s0mmelier.models.Alcohol;
 import by.s0mmelier.models.Image;
 import by.s0mmelier.models.Theme;
 import by.s0mmelier.models.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.PackagePrivate;
 
@@ -32,12 +33,12 @@ public class AlcoholCollection extends Collection{
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     Image image;
 
-    @OneToMany(fetch = FetchType.EAGER)
-            @JoinColumn(name = "c_alcohol_id")
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+            @JoinColumn(name = "alcohol_collection_id")
+            @JsonIgnore
     List<Alcohol> alcohols;
 
-    @ManyToOne(fetch = FetchType.LAZY)//, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "c_user_id")
-    //@OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY)
+            @JsonIgnore
     User user;
 }

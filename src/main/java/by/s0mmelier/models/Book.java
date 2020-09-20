@@ -46,10 +46,28 @@ public class Book{
     @ManyToOne(fetch = FetchType.EAGER)
     BookCollection bookCollection;
 
-    @ManyToMany
-    @JsonIgnore
-    @JoinTable(	name = "book_likes",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    List<User> likes = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY)
+    Set<Comment> comments;
+
+//    @ManyToMany
+//    @JsonIgnore
+//    @JoinTable(	name = "book_likes",
+//            joinColumns = @JoinColumn(name = "book_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    List<User> like = new ArrayList<>();
+@ManyToMany(mappedBy = "likeBooks")
+@JsonIgnore
+List<User> usersLike = new ArrayList<>();
+
+
+    @PrePersist
+    public void addPositions() {
+        usersLike.forEach(position -> position.getLikeBooks().add(this));
+    }
+
+    @PreRemove
+    public void removePositions() {
+        usersLike.forEach(position -> position.getLikeBooks().remove(this));
+        usersLike.clear();
+    }
 }

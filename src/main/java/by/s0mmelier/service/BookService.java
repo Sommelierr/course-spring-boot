@@ -24,6 +24,7 @@ public class BookService {
     @Autowired
     BookCollectionService bookCollectionService;
 
+
     public Optional<Book> getBook(long id){
         return bookRepository.findById(id);
     }

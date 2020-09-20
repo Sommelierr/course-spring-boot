@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -48,8 +49,8 @@ public class Alcohol{
     //@OnDelete(action = OnDeleteAction.CASCADE)
     AlcoholCollection alcoholCollection;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    List<Comment> comments;
+    @OneToMany(fetch = FetchType.LAZY)
+    Set<Comment> comments;
 
     @ManyToMany
     @JsonIgnore
@@ -57,4 +58,20 @@ public class Alcohol{
             joinColumns = @JoinColumn(name = "alcohol_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     List<User> likes = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "likeAlcohols")
+    @JsonIgnore
+    List<User> usersLike = new ArrayList<>();
+
+
+    @PrePersist
+    public void addPositions() {
+        usersLike.forEach(position -> position.getLikeAlcohols().add(this));
+    }
+
+    @PreRemove
+    public void removePositions() {
+        usersLike.forEach(position -> position.getLikeAlcohols().remove(this));
+        usersLike.clear();
+    }
 }

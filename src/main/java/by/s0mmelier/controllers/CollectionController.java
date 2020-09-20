@@ -121,7 +121,6 @@ public class CollectionController {
                                  @PathVariable("collectionId") long collectionId,
                                  @PathVariable("collectionType") String collectionType,
                                  @RequestParam("bitMask") long bitMask) throws IOException {
-        System.out.println(bitMask);
         if(collectionType.equals("bc")){ // bc = book collection type on URL
             bookCollectionService.setBitMask(bitMask, collectionId); }
         if(collectionType.equals("ac")) { //bc = alcohol collection type on URL

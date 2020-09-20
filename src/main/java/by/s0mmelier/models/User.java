@@ -3,6 +3,7 @@ package by.s0mmelier.models;
 import by.s0mmelier.collections.BookCollection;
 import by.s0mmelier.collections.AlcoholCollection;
 import by.s0mmelier.collections.MarkCollection;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -42,15 +43,15 @@ public class User {
 	private boolean blocked;
 
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "c_user_id")
+	@JoinColumn(name = "user_id")
 	private List<BookCollection> bookCollections = new ArrayList<>();
 
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "c_user_id")
+	@JoinColumn(name = "user_id")
 	private List<AlcoholCollection> alcoholCollections = new ArrayList<>();
 
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-	@JoinColumn(name = "c_user_id")
+	@JoinColumn(name = "user_id")
 	private List<MarkCollection> markCollections = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -58,6 +59,32 @@ public class User {
 				joinColumns = @JoinColumn(name = "user_id"),
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "book_likes",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "book_id")
+	)
+	@JsonIgnore
+	List<Book> likeBooks = new ArrayList<>();
+
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "alcohol_likes",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "alcohol_id")
+	)
+	@JsonIgnore
+	List<Alcohol> likeAlcohols = new ArrayList<>();
+
+	@PrePersist
+	public void addPositions() {
+		likeBooks.forEach(book -> book.getUsersLike().add(this));
+	}
+
+	@PreRemove
+	public void removePositions() {
+		likeBooks.forEach(position -> position.getUsersLike().remove(this));
+	}
 
 	public User() {
 	}
@@ -146,5 +173,21 @@ public class User {
 
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
+	}
+
+	public List<Book> getLikeBooks() {
+		return likeBooks;
+	}
+
+	public void setLikeBooks(List<Book> likeBooks) {
+		this.likeBooks = likeBooks;
+	}
+
+	public List<Alcohol> getLikeAlcohols() {
+		return likeAlcohols;
+	}
+
+	public void setLikeAlcohols(List<Alcohol> likeAlcohols) {
+		this.likeAlcohols = likeAlcohols;
 	}
 }
