@@ -65,28 +65,32 @@ public class LikeController {
         }
         if(collectionType.equals("ac")){
             Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
-            for(User user : alcohol.get().getLikes()) if(userId == user.getId()) likeStatusDto.setStatus(true);
+            for(User user : alcohol.get().getUsersLike()) if(userId == user.getId()) likeStatusDto.setStatus(true);
         }
         return likeStatusDto;
     }
-//
-//    @PostMapping("/unlike")
-//    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-//    public void unlike(@PathVariable("userId") long userId,
-//                        @PathVariable("collectionType") String collectionType,
-//                        @PathVariable("itemId") long itemId){
-//        if(collectionType.equals("bc")) {
-//            Optional<Book> book = bookService.getBook(itemId);
-//            User user = userService.getUserById(userId);
-//            book.get().getLikes().getUsersLike().remove(user);
-//            bookService.saveBook(book.get());
-//        }
-//        if(collectionType.equals("ac")){
-//            Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
-//            User user = userService.getUserById(userId);
-//            alcohol.get().getLikes().remove(user);
-//            alcoholService.saveAlcohol(alcohol.get());
-//        }
-//    }
+
+    @PostMapping("/unlike")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public void unlike(@PathVariable("userId") long userId,
+                        @PathVariable("collectionType") String collectionType,
+                        @PathVariable("itemId") long itemId){
+        if(collectionType.equals("bc")) {
+            Optional<Book> book = bookService.getBook(itemId);
+            User user = userService.getUserById(userId);
+            book.get().getUsersLike().remove(user);
+            user.getLikeBooks().remove(book.get());
+            bookService.saveBook(book.get());
+            userService.saveUser(user);
+        }
+        if(collectionType.equals("ac")){
+            Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
+            User user = userService.getUserById(userId);
+            alcohol.get().getUsersLike().remove(user);
+            user.getLikeAlcohols().remove(alcohol.get());
+            alcoholService.saveAlcohol(alcohol.get());
+            userService.saveUser(user);
+        }
+    }
 
 }

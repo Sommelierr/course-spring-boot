@@ -89,5 +89,4 @@ public class AlcoholService {
         alcoholRepository.deleteById(alcoholId);
     }
 
-
 }

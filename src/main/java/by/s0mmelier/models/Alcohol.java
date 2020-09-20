@@ -52,12 +52,12 @@ public class Alcohol{
     @OneToMany(fetch = FetchType.LAZY)
     Set<Comment> comments;
 
-    @ManyToMany
-    @JsonIgnore
-    @JoinTable(	name = "alcohol_likes",
-            joinColumns = @JoinColumn(name = "alcohol_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    List<User> likes = new ArrayList<>();
+//    @ManyToMany
+//    @JsonIgnore
+//    @JoinTable(	name = "alcohol_likes",
+//            joinColumns = @JoinColumn(name = "alcohol_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    List<User> likes = new ArrayList<>();
 
     @ManyToMany(mappedBy = "likeAlcohols")
     @JsonIgnore
