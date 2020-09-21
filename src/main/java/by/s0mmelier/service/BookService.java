@@ -47,7 +47,7 @@ public class BookService {
         book.setSummary(bookModel.getSummary());
         book.setRecommendation(bookModel.getRecommendation());
         book.setPublishingDateOnEnglish(utilService.stringToDate(bookModel.getPublishingDateOnEnglish()));
-        book.setPublishingDateOnJapan((utilService.stringToDate(bookModel.getPublishingDateOnJapan())));
+        book.setPublishingDateOnJapan(utilService.stringToDate(bookModel.getPublishingDateOnJapan()));
         book.setPublishingDateOnRussian(utilService.stringToDate(bookModel.getPublishingDateOnRussian()));
         book.setBitMask(bookCollectionService.getBookCollection(collectionId).getBitMask());
         bookRepository.save(book);

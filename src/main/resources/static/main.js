@@ -84,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API_URL = 'https://i-course.herokuapp.com/api/admin/';
+const API_URL = 'http://localhost:8080/api/admin/';
 class AdminService {
     constructor(http) {
         this.http = http;
@@ -141,7 +141,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const AUTH_API = 'https://i-course.herokuapp.com/api/auth/';
+const AUTH_API = 'http://localhost:8080/api/auth/';
 const httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
 };
@@ -190,7 +190,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API = 'https://i-course.herokuapp.com/api/';
+const API = 'http://localhost:8080/api/';
 // const httpOptions = {
 //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 // };
@@ -262,7 +262,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const URL = 'https://i-course.herokuapp.com/api/';
+const URL = 'http://localhost:8080/api/';
 class ItemService {
     constructor(http) {
         this.http = http;
@@ -466,7 +466,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API_URL = 'https://i-course.herokuapp.com/api/test/';
+const API_URL = 'http://localhost:8080/api/test/';
 class UserService {
     constructor(http) {
         this.http = http;
@@ -4329,13 +4329,22 @@ class BookCreateComponent {
             return (this.bitMask & 16384) == 16384;
     }
     onSubmit() {
-        this.form.hasAudio = this.defineValue(this.form.hasAudio);
-        this.form.itSerial = this.defineValue(this.form.itSerial);
-        this.form.hasFilm = this.defineValue(this.form.hasFilm);
+        this.defineFormValues();
         this.itemService.createBook(this.form, this.tags, this.collectionId).subscribe();
         this.router.navigate(['/user/' + `${this.userId}` + '/' + `${this.collectionType}` + '/b/' + `${this.collectionId}`]);
     }
-    defineValue(value) {
+    defineFormValues() {
+        this.form.hasAudio = this.defineCheckboxValue(this.form.hasAudio);
+        this.form.itSerial = this.defineCheckboxValue(this.form.itSerial);
+        this.form.hasFilm = this.defineCheckboxValue(this.form.hasFilm);
+        if (this.form.cost == undefined)
+            this.form.cost = 0;
+        if (this.form.countOfPages == undefined)
+            this.form.countOfPages = 0;
+        if (this.form.weight == undefined)
+            this.form.weight = 0;
+    }
+    defineCheckboxValue(value) {
         if (value == undefined || value == false || value == NaN)
             value = false;
         else
@@ -6058,7 +6067,7 @@ function CreateCollectionComponent_div_0_form_2_Template(rf, ctx) { if (rf & 1) 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "textarea", 17, 18);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function CreateCollectionComponent_div_0_form_2_Template_textarea_ngModelChange_18_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r21); const ctx_r25 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r25.form.description = $event; });
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "        ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "          ");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "div");
@@ -6197,7 +6206,7 @@ class CreateCollectionComponent {
     }
 }
 CreateCollectionComponent.ɵfac = function CreateCollectionComponent_Factory(t) { return new (t || CreateCollectionComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_collection_service__WEBPACK_IMPORTED_MODULE_1__["CollectionService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_token_storage_service__WEBPACK_IMPORTED_MODULE_2__["TokenStorageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_4__["NgxSpinnerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"])); };
-CreateCollectionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateCollectionComponent, selectors: [["app-use"]], viewQuery: function CreateCollectionComponent_Query(rf, ctx) { if (rf & 1) {
+CreateCollectionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CreateCollectionComponent, selectors: [["app-create-collection"]], viewQuery: function CreateCollectionComponent_Query(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵviewQuery"](_c0, true);
     } if (rf & 2) {
         var _t;
@@ -6210,7 +6219,7 @@ CreateCollectionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CreateCollectionComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
-                selector: 'app-use',
+                selector: 'app-create-collection',
                 templateUrl: './create-collection.component.html',
                 styleUrls: ['./create-collection.component.scss']
             }]

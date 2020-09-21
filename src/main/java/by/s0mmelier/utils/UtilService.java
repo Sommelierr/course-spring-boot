@@ -11,6 +11,7 @@ import java.util.Locale;
 public class UtilService {
 
     public Date stringToDate(String dataInString) throws ParseException {
+        if (dataInString.equals("undefined")) return  null;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd", Locale.ENGLISH);
         return formatter.parse(dataInString);
     }
