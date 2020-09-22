@@ -1,7 +1,6 @@
 package by.s0mmelier.Dto;
 
 import by.s0mmelier.models.Alcohol;
-import by.s0mmelier.models.Book;
 import by.s0mmelier.models.Image;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,7 @@ import java.util.List;
 @Setter
 @PackagePrivate
 @NoArgsConstructor
-public class AlcoholCollectionDto extends CollectionDto{
+public class AlcoholCollectionDto extends HomeCollectionDto {
     String name;
     String description;
     long bitMask;

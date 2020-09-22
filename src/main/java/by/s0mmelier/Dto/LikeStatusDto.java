@@ -10,6 +10,5 @@ import lombok.experimental.PackagePrivate;
 @PackagePrivate
 @NoArgsConstructor
 public class LikeStatusDto {
-
     boolean status;
 }

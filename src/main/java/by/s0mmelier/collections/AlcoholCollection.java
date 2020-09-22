@@ -27,6 +27,7 @@ public class AlcoholCollection extends Collection{
     String name;
     String description;
     long bitMask;
+    long countOfAlcohols;
     @ManyToOne(fetch = FetchType.LAZY)
     Theme theme;
 

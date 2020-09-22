@@ -1,67 +1,40 @@
 package by.s0mmelier.controllers;
 
-import by.s0mmelier.Dto.UserDto;
-import by.s0mmelier.models.Role;
-import by.s0mmelier.models.User;
-import by.s0mmelier.service.RoleService;
+import by.s0mmelier.repository.BookCollectionRepository;
+import by.s0mmelier.service.CloudinaryService;
+import by.s0mmelier.service.ImageService;
+import by.s0mmelier.Dto.CollectionsListDto;
+import by.s0mmelier.repository.BookRepository;
 import by.s0mmelier.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/test")
 public class UserController {
 
-    @Autowired
-    UserService userService;
+	@Autowired
+	UserService userService;
 
-    @Autowired
-    RoleService roleService;
+	@GetMapping("/all")
+	public String allAccess() {
+		return "Public Content.";
+	}
 
-    @GetMapping("/users")
-    public List<UserDto> userDtos(){
-        List<User> users = userService.getAllUsers();
-        return userService.convertToUsersDto(users);
-    }
+	@GetMapping("/user/{id}/status")
+	public boolean isBlocked(@PathVariable("id") Long id){
+		return userService.getUserById(id).isBlocked();
+	}
 
-    @PostMapping("/block")
-    public void block(@RequestParam("usersId") List<Long> usersId){
-        for(long id : usersId){
-            User user = userService.getUserById(id);
-            user.setBlocked(true);
-            userService.saveUser(user);
-        }
-    }
-
-    @PostMapping("/unblock")
-    public void unblock(@RequestParam("usersId") List<Long> usersId){
-        for(long id : usersId){
-            User user = userService.getUserById(id);
-            user.setBlocked(false);
-            userService.saveUser(user);
-        }
-    }
-
-    @PostMapping("/setRoleAdmin")
-    public void setRoleAdmin(@RequestParam("usersId") List<Long> usersId){
-        Role roleAdmin = roleService.getRoleAdmin();
-        for(long id : usersId){
-            User user = userService.getUserById(id);
-            user.getRoles().add(roleAdmin);
-            userService.saveUser(user);
-        }
-    }
-
-    @PostMapping("/delete")
-    public void delete(@RequestParam("usersId") List<Long> usersId){
-        for(long id : usersId){
-            userService.deleteUserById(id);
-        }
-    }
-
-
-
+	@GetMapping("/user/{id}")
+	public CollectionsListDto userCollections(@PathVariable("id") Long id) {
+		CollectionsListDto collectionsListDto = new CollectionsListDto();
+		collectionsListDto.setAlcoholCollections(userService.getUserById(id).getAlcoholCollections());
+		collectionsListDto.setBookCollections(userService.getUserById(id).getBookCollections());
+		collectionsListDto.setMarkCollections(userService.getUserById(id).getMarkCollections());
+		collectionsListDto.setBlocked(userService.getUserById(id).isBlocked());
+		return collectionsListDto;
+	}
 }

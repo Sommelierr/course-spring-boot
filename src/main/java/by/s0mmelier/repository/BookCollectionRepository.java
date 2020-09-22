@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BookCollectionRepository extends JpaRepository<BookCollection, Long> {
-    List<BookCollection> findAllByUserId(long id);
     BookCollection findById(long id);
 }

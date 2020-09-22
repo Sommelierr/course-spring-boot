@@ -1,7 +1,9 @@
 package by.s0mmelier.service;
 
 import by.s0mmelier.Dto.AlcoholCollectionDto;
+import by.s0mmelier.Dto.AlcoholDto;
 import by.s0mmelier.Dto.BookCollectionDto;
+import by.s0mmelier.Dto.HomeAlcoholDto;
 import by.s0mmelier.collections.AlcoholCollection;
 import by.s0mmelier.collections.BookCollection;
 import by.s0mmelier.models.Alcohol;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -76,9 +79,32 @@ public class AlcoholService {
         alcohol.get().setManufactureDate(utilService.stringToDate(alcoholModel.getManufactureDate()));
         alcohol.get().setDevelopmentDate((utilService.stringToDate(alcoholModel.getDevelopmentDate())));
         alcohol.get().setManufactureDateInBelarus(utilService.stringToDate(alcoholModel.getManufactureDateInBelarus()));
-        System.out.println(alcohol.get());
         alcoholRepository.save(alcohol.get());
         return true;
+    }
+
+    public AlcoholDto getAlcoholDto(long id){
+        Optional<Alcohol> alcohol = alcoholRepository.findById(id);
+        AlcoholDto alcoholDto = new AlcoholDto();
+        alcoholDto.setName(alcohol.get().getName());
+        alcoholDto.setTags(tagService.tagsToStringList(alcohol.get().getTags()));
+        alcoholDto.setCost(alcohol.get().getCost());
+        alcoholDto.setPercent(alcohol.get().getPercent());
+        alcoholDto.setVolume(alcohol.get().getVolume());
+        alcoholDto.setManufacturer(alcohol.get().getManufacturer());
+        alcoholDto.setGrade(alcohol.get().getGrade());
+        alcoholDto.setManufactureCountry(alcohol.get().getManufactureCountry());
+        alcoholDto.setHasOneLiter(alcohol.get().isHasOneLiter());
+        alcoholDto.setHasTwoLiters(alcohol.get().isHasTwoLiters());
+        alcoholDto.setHasFiveLiters(alcohol.get().isHasFiveLiters());
+        alcoholDto.setComment(alcohol.get().getComment());
+        alcoholDto.setHistory(alcohol.get().getHistory());
+        alcoholDto.setRecommendation(alcohol.get().getRecommendation());
+        alcoholDto.setManufactureDate(alcohol.get().getManufactureDate());
+        alcoholDto.setDevelopmentDate(alcohol.get().getDevelopmentDate());
+        alcoholDto.setManufactureDateInBelarus(alcohol.get().getManufactureDateInBelarus());
+        alcoholDto.setBitMask(alcohol.get().getBitMask());
+        return alcoholDto;
     }
 
     public void saveAlcohol(Alcohol alcohol){
@@ -86,7 +112,21 @@ public class AlcoholService {
     }
 
     public void deleteAlcohol(long alcoholId){
+        AlcoholCollection collection = alcoholCollectionService.getAlcoholCollection(alcoholRepository.findById(alcoholId)
+                                                                .get().getAlcoholCollection().getId());
+        collection.setCountOfAlcohols(collection.getCountOfAlcohols()-1);
+        alcoholCollectionService.saveCollection(collection);
         alcoholRepository.deleteById(alcoholId);
     }
 
+    public HomeAlcoholDto getLast(){
+        if(alcoholRepository.findTopByOrderByIdDesc() != null) {
+            HomeAlcoholDto alcoholDto = new HomeAlcoholDto();
+            Alcohol alcohol = alcoholRepository.findTopByOrderByIdDesc();
+            alcoholDto.setId(alcohol.getId());
+            alcoholDto.setName(alcohol.getName());
+            return alcoholDto;
+        }
+        else return null;
+    }
 }

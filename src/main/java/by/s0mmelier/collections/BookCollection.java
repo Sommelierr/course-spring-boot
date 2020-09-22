@@ -27,6 +27,7 @@ public class BookCollection extends Collection{
     String name;
     String description;
     long bitMask;
+    long countOfBooks;
     @ManyToOne(fetch = FetchType.LAZY)
     Theme theme;
 

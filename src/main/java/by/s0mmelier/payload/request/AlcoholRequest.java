@@ -10,7 +10,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class AlcoholRequest {
-
     String name;
     List<String> tags;
     int cost;

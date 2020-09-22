@@ -33,6 +33,7 @@ public class AlcoholCollectionService {
         alcoholCollection.setDescription(collectionRequest.getDescription());
         alcoholCollection.setTheme(themeService.getByName(collectionRequest.getTheme()));
         alcoholCollection.setImage(imageService.getByUrl(imageService.convertToImage(collectionRequest).getUrl()));
+        alcoholCollection.setCountOfAlcohols(0);
         alcoholCollectionRepository.save(alcoholCollection);
         return alcoholCollection;
     }
@@ -60,6 +61,7 @@ public class AlcoholCollectionService {
     public void addAlcohol(long collectionId, Alcohol alcohol){
         AlcoholCollection alcoholCollection = getAlcoholCollection(collectionId);
         alcoholCollection.getAlcohols().add(alcohol);
+        alcoholCollection.setCountOfAlcohols(alcoholCollection.getCountOfAlcohols()+1);
         alcoholCollectionRepository.save(alcoholCollection);
     }
 
@@ -77,5 +79,19 @@ public class AlcoholCollectionService {
         collectionDto.setAlcohols(collection.getAlcohols());
         collectionDto.setBlocked(collection.getUser().isBlocked());
         return collectionDto;
+    }
+
+    public AlcoholCollection getBiggestAlcoholCollection(){
+        AlcoholCollection alcoholCollection = new AlcoholCollection();
+        alcoholCollection.setCountOfAlcohols(0);
+        if(alcoholCollectionRepository.findAll() != null) {
+            for (AlcoholCollection collection : alcoholCollectionRepository.findAll()) {
+                if (collection.getCountOfAlcohols() > alcoholCollection.getCountOfAlcohols()) {
+                    alcoholCollection = collection;
+                }
+            }
+        }
+        else return null;
+        return alcoholCollection;
     }
 }

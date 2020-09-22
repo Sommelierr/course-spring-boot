@@ -6,6 +6,7 @@ import by.s0mmelier.models.Book;
 import by.s0mmelier.models.User;
 import by.s0mmelier.service.AlcoholService;
 import by.s0mmelier.service.BookService;
+import by.s0mmelier.service.LikeService;
 import by.s0mmelier.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,7 +22,8 @@ public class LikeController {
     @Autowired
     UserService userService;
 
-
+    @Autowired
+    LikeService likeService;
 
     @Autowired
     BookService bookService;
@@ -31,66 +33,30 @@ public class LikeController {
 
 
     @PostMapping("/like")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void like(@PathVariable("userId") long userId,
                         @PathVariable("collectionType") String collectionType,
                         @PathVariable("itemId") long itemId){
-        if(collectionType.equals("bc")) {
-            Optional<Book> book = bookService.getBook(itemId);
-            User user = userService.getUserById(userId);
-            user.getLikeBooks().add(book.get());
-            book.get().getUsersLike().add(user);
-            bookService.saveBook(book.get());
-            userService.saveUser(user);
-        }
-        if(collectionType.equals("ac")) {
-            Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
-            User user = userService.getUserById(userId);
-            user.getLikeAlcohols().add(alcohol.get());
-            alcohol.get().getUsersLike().add(user);
-            alcoholService.saveAlcohol(alcohol.get());
-            userService.saveUser(user);
-        }
+        if(collectionType.equals("bc")) likeService.likeBook(itemId, userId);
+        if(collectionType.equals("ac")) likeService.likeAlcohol(itemId,userId);
     }
 
     @GetMapping("/like")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public LikeStatusDto getLikeStatus(@PathVariable("userId") long userId,
                                        @PathVariable("collectionType") String collectionType,
                                        @PathVariable("itemId") long itemId) {
-        LikeStatusDto likeStatusDto = new LikeStatusDto();
-        if(collectionType.equals("bc")) {
-            Optional<Book> book = bookService.getBook(itemId);
-            for (User user : book.get().getUsersLike()) if (userId == user.getId()) likeStatusDto.setStatus(true);
-        }
-        if(collectionType.equals("ac")){
-            Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
-            for(User user : alcohol.get().getUsersLike()) if(userId == user.getId()) likeStatusDto.setStatus(true);
-        }
-        return likeStatusDto;
+        if(collectionType.equals("bc")) return likeService.getBookLikeStatus(itemId, userId);
+        else  return likeService.getAlcoholLikeStatus(itemId, userId);
     }
 
     @PostMapping("/unlike")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void unlike(@PathVariable("userId") long userId,
                         @PathVariable("collectionType") String collectionType,
                         @PathVariable("itemId") long itemId){
-        if(collectionType.equals("bc")) {
-            Optional<Book> book = bookService.getBook(itemId);
-            User user = userService.getUserById(userId);
-            book.get().getUsersLike().remove(user);
-            user.getLikeBooks().remove(book.get());
-            bookService.saveBook(book.get());
-            userService.saveUser(user);
-        }
-        if(collectionType.equals("ac")){
-            Optional<Alcohol> alcohol = alcoholService.getAlcohol(itemId);
-            User user = userService.getUserById(userId);
-            alcohol.get().getUsersLike().remove(user);
-            user.getLikeAlcohols().remove(alcohol.get());
-            alcoholService.saveAlcohol(alcohol.get());
-            userService.saveUser(user);
-        }
+        if(collectionType.equals("bc")) likeService.unlikeBook(itemId,userId);
+        if(collectionType.equals("ac")) likeService.unlikeAlcohol(itemId,userId);
     }
 
 }

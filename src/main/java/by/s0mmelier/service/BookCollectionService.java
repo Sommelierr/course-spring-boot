@@ -1,6 +1,9 @@
 package by.s0mmelier.service;
 
 import by.s0mmelier.Dto.BookCollectionDto;
+import by.s0mmelier.Dto.HomeBookDto;
+import by.s0mmelier.Dto.HomeCollectionDto;
+import by.s0mmelier.collections.AlcoholCollection;
 import by.s0mmelier.collections.BookCollection;
 import by.s0mmelier.models.Book;
 import by.s0mmelier.repository.BookCollectionRepository;
@@ -32,6 +35,7 @@ public class BookCollectionService {
         bookCollection.setDescription(collectionRequest.getDescription());
         bookCollection.setTheme(themeService.getByName(collectionRequest.getTheme()));
         bookCollection.setImage(imageService.getByUrl(imageService.convertToImage(collectionRequest).getUrl()));
+        bookCollection.setCountOfBooks(0);
         bookCollectionRepository.save(bookCollection);
         return bookCollection;
     }
@@ -58,7 +62,7 @@ public class BookCollectionService {
     public void addBook(long collectionId, Book book){
         BookCollection bookCollection = getBookCollection(collectionId);
         bookCollection.getBooks().add(book);
-        System.out.println(book.toString());
+        bookCollection.setCountOfBooks(bookCollection.getCountOfBooks()+1);
         bookCollectionRepository.save(bookCollection);
     }
 
@@ -76,5 +80,19 @@ public class BookCollectionService {
         collectionDto.setBooks(collection.getBooks());
         collectionDto.setBlocked(collection.getUser().isBlocked());
         return collectionDto;
+    }
+
+    public BookCollection getBiggestBookCollection(){
+        BookCollection bookCollection = new BookCollection();
+        bookCollection.setCountOfBooks(0);
+        if(bookCollectionRepository.findAll() != null) {
+            for (BookCollection collection : bookCollectionRepository.findAll()) {
+                if (collection.getCountOfBooks() > bookCollection.getCountOfBooks()) {
+                    bookCollection = collection;
+                }
+            }
+        }
+        else return null;
+        return bookCollection;
     }
 }

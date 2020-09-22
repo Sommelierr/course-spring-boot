@@ -1,13 +1,9 @@
 package by.s0mmelier.controllers;
 
-import by.s0mmelier.Dto.CollectionDto;
-import by.s0mmelier.models.Theme;
+import by.s0mmelier.Dto.HomeCollectionDto;
 import by.s0mmelier.service.*;
 import by.s0mmelier.Dto.CollectionBitMaskDto;
-import by.s0mmelier.collections.Collection;
 import by.s0mmelier.payload.request.CollectionRequest;
-import by.s0mmelier.repository.ThemeRepository;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,55 +28,31 @@ public class CollectionController {
     AlcoholCollectionService alcoholCollectionService;
 
     @Autowired
-    MarkCollectionService markCollectionService;
-
-    @Autowired
-    ThemeRepository themeRepository;
-
-    @Autowired
-    CloudinaryService cloudinaryService;
-
-    @Autowired
-    ImageService imageService;
+    CollectionService collectionService;
 
     @GetMapping("{id}/create")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void createCollection() throws IOException {
-        Theme themeBooks = new Theme();
-        themeBooks.setName("Books");
-        if(!themeRepository.existsByName("Books")) themeRepository.save(themeBooks);
-
-        Theme themeAlcohol = new Theme();
-        themeAlcohol.setName("Alcohol");
-        if(!themeRepository.existsByName("Alcohol")) themeRepository.save(themeAlcohol);
-
-
-        Theme themeMarks = new Theme();
-        themeMarks.setName("Marks");
-        if(!themeRepository.existsByName("Marks")){
-            themeRepository.save(themeMarks);
-        }
+        collectionService.initThems();
     }
 
     @PostMapping("{id}/create")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void createCollection(@PathVariable("id") long id,
                                     @Valid @ModelAttribute CollectionRequest collectionRequest) throws Exception{
         if(collectionRequest.getTheme().equals("Books")){
             userService.addBookCollection(id, bookCollectionService.createCollection(collectionRequest)); }
         if(collectionRequest.getTheme().equals("Alcohol")) {
             userService.addAlcoholCollection(id, alcoholCollectionService.createCollection(collectionRequest)); }
-        if(collectionRequest.getTheme().equals("Marks")){
-            userService.addMarkCollection(id, markCollectionService.createCollection(collectionRequest)); }
     }
 
     @GetMapping("user/{userId}/{collectionType}/{collectionId}")
-    public CollectionDto getCollection(@PathVariable("userId") long userId,
-                                       @PathVariable("collectionId") long collectionId,
-                                       @PathVariable("collectionType") String collectionType){
+    public HomeCollectionDto getCollection(@PathVariable("userId") long userId,
+                                           @PathVariable("collectionId") long collectionId,
+                                           @PathVariable("collectionType") String collectionType){
         if(collectionType.equals("bc")) return bookCollectionService.getBookCollectionDto(collectionId);
         if(collectionType.equals("ac")) return alcoholCollectionService.getAlcoholCollectionDto(collectionId);
-        else return null; //markCollectionService.getMarkCollection(collectionId);
+        else return null;
     }
 
 
@@ -88,7 +60,7 @@ public class CollectionController {
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     @ResponseBody
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void deleteCollection( @PathVariable("collectionId") long collectionId,
                                     @PathVariable("collectionType") String collectionType) {
         if(collectionType.equals("bc")) bookCollectionService.deleteBookCollection(collectionId);
@@ -99,7 +71,7 @@ public class CollectionController {
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     @ResponseBody
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void updateCollection(@PathVariable("userId") long userId,
                                  @PathVariable("collectionId") long collectionId,
                                  @PathVariable("collectionType") String collectionType,
@@ -108,15 +80,13 @@ public class CollectionController {
             bookCollectionService.updateCollection(collectionRequest, collectionId); }
         if(collectionType.equals("ac")) { //bc = alcohol collection type on URL
             alcoholCollectionService.updateCollection(collectionRequest, collectionId); }
-        if(collectionType.equals("mc")){ //mc = mark collection type on URL
-            markCollectionService.updateCollection(collectionRequest, collectionId); }
     }
 
     @RequestMapping(value = "user/{userId}/{collectionType}/{collectionId}/bitMask", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     @ResponseBody
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void setBitMask(@PathVariable("userId") long userId,
                                  @PathVariable("collectionId") long collectionId,
                                  @PathVariable("collectionType") String collectionType,
@@ -125,8 +95,6 @@ public class CollectionController {
             bookCollectionService.setBitMask(bitMask, collectionId); }
         if(collectionType.equals("ac")) { //bc = alcohol collection type on URL
             alcoholCollectionService.setBitMask(bitMask, collectionId); }
-        if(collectionType.equals("mc")){ //mc = mark collection type on URL
-            markCollectionService.setBitMask(bitMask, collectionId); }
     }
 
     @GetMapping("bookCollection/{collectionId}/bitMask")

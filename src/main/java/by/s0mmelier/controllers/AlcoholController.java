@@ -1,5 +1,6 @@
 package by.s0mmelier.controllers;
 
+import by.s0mmelier.Dto.AlcoholDto;
 import by.s0mmelier.models.Alcohol;
 import by.s0mmelier.payload.request.AlcoholRequest;
 import by.s0mmelier.service.AlcoholService;
@@ -29,16 +30,18 @@ public class AlcoholController {
     }
 
     @GetMapping("alcohol/{alcoholId}")
-    public Optional<Alcohol> getAlcohol(@PathVariable("alcoholId") long alcoholId){
-        return alcoholService.getAlcohol(alcoholId);
+    public AlcoholDto getAlcohol(@PathVariable("alcoholId") long alcoholId){
+        return alcoholService.getAlcoholDto(alcoholId);
     }
 
     @PostMapping("alcohol/{alcoholId}/bitMask")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public void setAlcoholBitMask(@PathVariable("alcoholId") long alcoholId, @RequestParam("bitMask") long bitMask){
-        Alcohol alcohol = alcoholService.getAlcohol(alcoholId).get();
-        alcohol.setBitMask(bitMask);
-        alcoholService.saveAlcohol(alcohol);
+        if(alcoholService.getAlcohol(alcoholId) != null) {
+            Alcohol alcohol = alcoholService.getAlcohol(alcoholId).get();
+            alcohol.setBitMask(bitMask);
+            alcoholService.saveAlcohol(alcohol);
+        }
     }
 
     @RequestMapping(value = "alcohol/{alcoholId}", //
@@ -47,7 +50,9 @@ public class AlcoholController {
     @ResponseBody
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public void deleteAlcohol(@PathVariable("alcoholId") long alcoholId) {
-        alcoholService.deleteAlcohol(alcoholId);
+        if(alcoholService.getAlcohol(alcoholId) != null) {
+            alcoholService.deleteAlcohol(alcoholId);
+        }
     }
 
     @RequestMapping(value = "alcohol/{alcoholId}", //

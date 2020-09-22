@@ -34,4 +34,9 @@ public class TagService {
         for(Tag tag : tags) tagNames.add(tag.getName());
         return tagNames;
     }
+
+    public List<Tag> getAlltags(){
+        return tagRepository.findAll();
+    }
+
 }

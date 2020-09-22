@@ -49,16 +49,9 @@ public class Book{
     @OneToMany(fetch = FetchType.LAZY)
     Set<Comment> comments;
 
-//    @ManyToMany
-//    @JsonIgnore
-//    @JoinTable(	name = "book_likes",
-//            joinColumns = @JoinColumn(name = "book_id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id"))
-//    List<User> like = new ArrayList<>();
-@ManyToMany(mappedBy = "likeBooks")
-@JsonIgnore
-List<User> usersLike = new ArrayList<>();
-
+    @ManyToMany(mappedBy = "likeBooks")
+    @JsonIgnore
+    List<User> usersLike = new ArrayList<>();
 
     @PrePersist
     public void addPositions() {

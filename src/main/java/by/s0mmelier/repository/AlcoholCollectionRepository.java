@@ -6,6 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface AlcoholCollectionRepository extends JpaRepository<AlcoholCollection, Long> {
-    List<AlcoholCollection> findAllByUserId(long id);
     AlcoholCollection findById(long id);
 }

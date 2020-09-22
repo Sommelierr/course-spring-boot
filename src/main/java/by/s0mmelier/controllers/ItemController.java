@@ -42,11 +42,10 @@ public class ItemController {
 
     @GetMapping("{collectionType}/{itemId}")
     public List<String> getItemTags(@PathVariable("collectionType") String collectionType,
-                            @PathVariable("itemId") long itemId){
+                                    @PathVariable("itemId") long itemId){
         if(collectionType.equals("bc")) return
                 tagService.tagsToStringList(bookService.getBook(itemId).get().getTags());
-        if(collectionType.equals("ac")) return
+        else return
                 tagService.tagsToStringList(alcoholService.getAlcohol(itemId).get().getTags());
-        else return null;
     }
 }
