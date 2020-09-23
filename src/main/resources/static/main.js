@@ -84,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API_URL = 'http://localhost:8080/api/admin/';
+const API_URL = 'https://i-course.herokuapp.com/api/admin/';
 class AdminService {
     constructor(http) {
         this.http = http;
@@ -141,7 +141,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const AUTH_API = 'http://localhost:8080/api/auth/';
+const AUTH_API = 'https://i-course.herokuapp.com/api/auth/';
 const httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
 };
@@ -190,16 +190,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API = 'http://localhost:8080/api/';
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-// };
+
+const API = 'https://i-course.herokuapp.com/api/';
+const httpOptions = {
+    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
+};
 class CollectionService {
     constructor(http) {
         this.http = http;
     }
     getCollectionCreaterForm(id) {
-        return this.http.get(API + `${id}` + '/' + 'create');
+        return this.http.get(API + `${id}` + '/' + 'create', httpOptions);
     }
     createCollection(collection, image, id) {
         const formData = new FormData();
@@ -262,7 +263,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const URL = 'http://localhost:8080/api/';
+const URL = 'https://i-course.herokuapp.com/api/';
 class FindService {
     constructor(http) {
         this.http = http;
@@ -298,7 +299,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const URL = 'http://localhost:8080/api/';
+const URL = 'https://i-course.herokuapp.com/api/';
 class ItemService {
     constructor(http) {
         this.http = http;
@@ -502,7 +503,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API_URL = 'http://localhost:8080/api/test/';
+const API_URL = 'https://i-course.herokuapp.com/api/test/';
 class UserService {
     constructor(http) {
         this.http = http;
