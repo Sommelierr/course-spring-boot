@@ -1,5 +1,6 @@
 package by.s0mmelier.controllers;
 
+import by.s0mmelier.Dto.CollectionDto;
 import by.s0mmelier.Dto.HomeCollectionDto;
 import by.s0mmelier.service.*;
 import by.s0mmelier.Dto.CollectionBitMaskDto;
@@ -47,9 +48,9 @@ public class CollectionController {
     }
 
     @GetMapping("user/{userId}/{collectionType}/{collectionId}")
-    public HomeCollectionDto getCollection(@PathVariable("userId") long userId,
-                                           @PathVariable("collectionId") long collectionId,
-                                           @PathVariable("collectionType") String collectionType){
+    public CollectionDto getCollection(@PathVariable("userId") long userId,
+                                       @PathVariable("collectionId") long collectionId,
+                                       @PathVariable("collectionType") String collectionType){
         if(collectionType.equals("bc")) return bookCollectionService.getBookCollectionDto(collectionId);
         if(collectionType.equals("ac")) return alcoholCollectionService.getAlcoholCollectionDto(collectionId);
         else return null;

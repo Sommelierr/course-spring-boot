@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @PackagePrivate
 @NoArgsConstructor
-public class BookCollectionDto extends HomeCollectionDto {
+public class BookCollectionDto extends CollectionDto{
     String name;
     String description;
     long bitMask;

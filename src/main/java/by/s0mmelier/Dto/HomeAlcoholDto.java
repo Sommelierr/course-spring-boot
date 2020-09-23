@@ -12,4 +12,6 @@ import lombok.experimental.PackagePrivate;
 public class HomeAlcoholDto {
     long id;
     String name;
+    long userId;
+    long collectionId;
 }

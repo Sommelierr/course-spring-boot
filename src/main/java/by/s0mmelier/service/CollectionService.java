@@ -41,7 +41,7 @@ public class CollectionService {
         }
     }
 
-    public HomeCollectionDto getBiggestCollectiion(){
+    public HomeCollectionDto getBiggestCollection(){
         BookCollection bookCollection = bookCollectionService.getBiggestBookCollection();
         AlcoholCollection alcoholCollection = alcoholCollectionService.getBiggestAlcoholCollection();
         if(bookCollection == null && alcoholCollection == null) return null;
@@ -56,19 +56,21 @@ public class CollectionService {
     }
 
     public HomeCollectionDto bookCollectionToHomeCollectionDto(BookCollection collection){
-        HomeCollectionDto homeCollection = new HomeCollectionDto();
-        homeCollection.setId(collection.getId());
-        homeCollection.setName(collection.getName());
-        homeCollection.setTheme(collection.getTheme().getName());
-        return homeCollection;
+            HomeCollectionDto homeCollection = new HomeCollectionDto();
+            homeCollection.setId(collection.getId());
+            homeCollection.setName(collection.getName());
+            homeCollection.setTheme(collection.getTheme().getName());
+            homeCollection.setUserId(collection.getUser().getId());
+            return homeCollection;
     }
 
     public HomeCollectionDto alcoholCollectionToHomeCollectionDto(AlcoholCollection collection){
-        HomeCollectionDto homeCollection = new HomeCollectionDto();
-        homeCollection.setId(collection.getId());
-        homeCollection.setName(collection.getName());
-        homeCollection.setTheme(collection.getTheme().getName());
-        return homeCollection;
+            HomeCollectionDto homeCollection = new HomeCollectionDto();
+            homeCollection.setId(collection.getId());
+            homeCollection.setName(collection.getName());
+            homeCollection.setTheme(collection.getTheme().getName());
+            homeCollection.setUserId(collection.getUser().getId());
+            return homeCollection;
     }
 
 }

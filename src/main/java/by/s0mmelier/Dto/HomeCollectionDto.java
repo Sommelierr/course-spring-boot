@@ -13,4 +13,5 @@ public class HomeCollectionDto {
     long id;
     String name;
     String theme;
+    long userId;
 }

@@ -125,6 +125,9 @@ public class AlcoholService {
             Alcohol alcohol = alcoholRepository.findTopByOrderByIdDesc();
             alcoholDto.setId(alcohol.getId());
             alcoholDto.setName(alcohol.getName());
+            alcoholDto.setUserId(alcohol.getAlcoholCollection().getUser().getId());
+            alcoholDto.setCollectionId(alcohol.getAlcoholCollection().getId());
+            System.out.println("uid" + alcohol.getAlcoholCollection().getUser().getId());
             return alcoholDto;
         }
         else return null;

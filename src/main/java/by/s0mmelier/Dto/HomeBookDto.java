@@ -12,4 +12,6 @@ import lombok.experimental.PackagePrivate;
 public class HomeBookDto {
     long id;
     String name;
+    long userId;
+    long collectionId;
 }

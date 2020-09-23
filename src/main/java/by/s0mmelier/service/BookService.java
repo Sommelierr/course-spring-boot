@@ -127,6 +127,8 @@ public class BookService {
             HomeBookDto bookDto = new HomeBookDto();
             bookDto.setId(book.getId());
             bookDto.setName(book.getName());
+            bookDto.setUserId(book.getBookCollection().getUser().getId());
+            bookDto.setCollectionId(book.getBookCollection().getId());
             return bookDto;
         }
         else return null;

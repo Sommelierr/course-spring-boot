@@ -27,4 +27,5 @@ public class BookDto {
     Date publishingDateOnRussian;
     Date publishingDateOnJapan;
     long bitMask;
+    long countOfLikes;
 }
