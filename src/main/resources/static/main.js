@@ -2904,6 +2904,7 @@ class AppComponent {
         this.isLoggedIn = false;
         this.showAdminBoard = false;
         this.showModeratorBoard = false;
+        this.title = 'course-angular';
     }
     ngOnInit() {
         this.isLoggedIn = !!this.tokenStorageService.getToken();
