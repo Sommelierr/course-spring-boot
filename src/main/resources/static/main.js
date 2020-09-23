@@ -3005,20 +3005,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _book_details_book_details_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./book-details/book-details.component */ "./src/app/book-details/book-details.component.ts");
 /* harmony import */ var _alcohol_details_alcohol_details_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./alcohol-details/alcohol-details.component */ "./src/app/alcohol-details/alcohol-details.component.ts");
 /* harmony import */ var _helpers_auth_interceptor__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_helpers/auth.interceptor */ "./src/app/_helpers/auth.interceptor.ts");
-/* harmony import */ var _user_user_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./user/user.component */ "./src/app/user/user.component.ts");
-/* harmony import */ var _create_collection_create_collection_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./create-collection/create-collection.component */ "./src/app/create-collection/create-collection.component.ts");
-/* harmony import */ var _collection_edit_collection_edit_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./collection-edit/collection-edit.component */ "./src/app/collection-edit/collection-edit.component.ts");
-/* harmony import */ var _book_create_book_create_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./book-create/book-create.component */ "./src/app/book-create/book-create.component.ts");
-/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/form-field.js");
-/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/chips.js");
-/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/autocomplete */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/autocomplete.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/animations.js");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/icon.js");
-/* harmony import */ var _book_edit_book_edit_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./book-edit/book-edit.component */ "./src/app/book-edit/book-edit.component.ts");
-/* harmony import */ var _alcohol_edit_alcohol_edit_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./alcohol-edit/alcohol-edit.component */ "./src/app/alcohol-edit/alcohol-edit.component.ts");
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
-/* harmony import */ var _alcohol_create_alcohol_create_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./alcohol-create/alcohol-create.component */ "./src/app/alcohol-create/alcohol-create.component.ts");
-/* harmony import */ var angular_tag_cloud_module__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! angular-tag-cloud-module */ "./node_modules/angular-tag-cloud-module/__ivy_ngcc__/fesm2015/angular-tag-cloud-module.js");
+/* harmony import */ var _services_collection_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_services/collection.service */ "./src/app/_services/collection.service.ts");
+/* harmony import */ var _user_user_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./user/user.component */ "./src/app/user/user.component.ts");
+/* harmony import */ var _create_collection_create_collection_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./create-collection/create-collection.component */ "./src/app/create-collection/create-collection.component.ts");
+/* harmony import */ var _collection_edit_collection_edit_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./collection-edit/collection-edit.component */ "./src/app/collection-edit/collection-edit.component.ts");
+/* harmony import */ var _book_create_book_create_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./book-create/book-create.component */ "./src/app/book-create/book-create.component.ts");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/form-field.js");
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/chips.js");
+/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/autocomplete */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/autocomplete.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/animations.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/icon.js");
+/* harmony import */ var _book_edit_book_edit_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./book-edit/book-edit.component */ "./src/app/book-edit/book-edit.component.ts");
+/* harmony import */ var _alcohol_edit_alcohol_edit_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./alcohol-edit/alcohol-edit.component */ "./src/app/alcohol-edit/alcohol-edit.component.ts");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
+/* harmony import */ var _alcohol_create_alcohol_create_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./alcohol-create/alcohol-create.component */ "./src/app/alcohol-create/alcohol-create.component.ts");
+/* harmony import */ var angular_tag_cloud_module__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! angular-tag-cloud-module */ "./node_modules/angular-tag-cloud-module/__ivy_ngcc__/fesm2015/angular-tag-cloud-module.js");
+
 
 
 
@@ -3055,19 +3057,19 @@ __webpack_require__.r(__webpack_exports__);
 class AppModule {
 }
 AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [_helpers_auth_interceptor__WEBPACK_IMPORTED_MODULE_16__["authInterceptorProviders"]], imports: [[
-            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_21__["MatFormFieldModule"],
-            _angular_material_chips__WEBPACK_IMPORTED_MODULE_22__["MatChipsModule"],
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [_helpers_auth_interceptor__WEBPACK_IMPORTED_MODULE_16__["authInterceptorProviders"], _services_collection_service__WEBPACK_IMPORTED_MODULE_17__["CollectionService"]], imports: [[
+            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_22__["MatFormFieldModule"],
+            _angular_material_chips__WEBPACK_IMPORTED_MODULE_23__["MatChipsModule"],
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-            _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_23__["MatAutocompleteModule"],
-            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_24__["BrowserAnimationsModule"],
-            _angular_material_icon__WEBPACK_IMPORTED_MODULE_25__["MatIconModule"],
-            _angular_material_button__WEBPACK_IMPORTED_MODULE_28__["MatButtonModule"],
-            angular_tag_cloud_module__WEBPACK_IMPORTED_MODULE_30__["TagCloudModule"]
+            _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_24__["MatAutocompleteModule"],
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_25__["BrowserAnimationsModule"],
+            _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MatIconModule"],
+            _angular_material_button__WEBPACK_IMPORTED_MODULE_29__["MatButtonModule"],
+            angular_tag_cloud_module__WEBPACK_IMPORTED_MODULE_31__["TagCloudModule"]
         ]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
         _login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"],
@@ -3076,28 +3078,28 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector
         _profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileComponent"],
         _board_admin_board_admin_component__WEBPACK_IMPORTED_MODULE_10__["BoardAdminComponent"],
         _board_user_board_user_component__WEBPACK_IMPORTED_MODULE_11__["BoardUserComponent"],
-        _user_user_component__WEBPACK_IMPORTED_MODULE_17__["UserComponent"],
-        _create_collection_create_collection_component__WEBPACK_IMPORTED_MODULE_18__["CreateCollectionComponent"],
+        _user_user_component__WEBPACK_IMPORTED_MODULE_18__["UserComponent"],
+        _create_collection_create_collection_component__WEBPACK_IMPORTED_MODULE_19__["CreateCollectionComponent"],
         _book_collection_details_book_collection_details_component__WEBPACK_IMPORTED_MODULE_12__["BookCollectionDetailsComponent"],
         _alcohol_collection_details_alcohol_collection_details_component__WEBPACK_IMPORTED_MODULE_13__["AlcoholCollectionDetailsComponent"],
-        _collection_edit_collection_edit_component__WEBPACK_IMPORTED_MODULE_19__["EditCollectionComponent"],
-        _book_create_book_create_component__WEBPACK_IMPORTED_MODULE_20__["BookCreateComponent"],
-        _alcohol_create_alcohol_create_component__WEBPACK_IMPORTED_MODULE_29__["AlcoholCreateComponent"],
+        _collection_edit_collection_edit_component__WEBPACK_IMPORTED_MODULE_20__["EditCollectionComponent"],
+        _book_create_book_create_component__WEBPACK_IMPORTED_MODULE_21__["BookCreateComponent"],
+        _alcohol_create_alcohol_create_component__WEBPACK_IMPORTED_MODULE_30__["AlcoholCreateComponent"],
         _book_details_book_details_component__WEBPACK_IMPORTED_MODULE_14__["BookDetailsComponent"],
         _alcohol_details_alcohol_details_component__WEBPACK_IMPORTED_MODULE_15__["AlcoholDetailsComponent"],
-        _book_edit_book_edit_component__WEBPACK_IMPORTED_MODULE_26__["BookEditComponent"],
-        _alcohol_edit_alcohol_edit_component__WEBPACK_IMPORTED_MODULE_27__["AlcoholEditComponent"]], imports: [_angular_material_form_field__WEBPACK_IMPORTED_MODULE_21__["MatFormFieldModule"],
-        _angular_material_chips__WEBPACK_IMPORTED_MODULE_22__["MatChipsModule"],
+        _book_edit_book_edit_component__WEBPACK_IMPORTED_MODULE_27__["BookEditComponent"],
+        _alcohol_edit_alcohol_edit_component__WEBPACK_IMPORTED_MODULE_28__["AlcoholEditComponent"]], imports: [_angular_material_form_field__WEBPACK_IMPORTED_MODULE_22__["MatFormFieldModule"],
+        _angular_material_chips__WEBPACK_IMPORTED_MODULE_23__["MatChipsModule"],
         _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-        _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_23__["MatAutocompleteModule"],
-        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_24__["BrowserAnimationsModule"],
-        _angular_material_icon__WEBPACK_IMPORTED_MODULE_25__["MatIconModule"],
-        _angular_material_button__WEBPACK_IMPORTED_MODULE_28__["MatButtonModule"],
-        angular_tag_cloud_module__WEBPACK_IMPORTED_MODULE_30__["TagCloudModule"]] }); })();
+        _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_24__["MatAutocompleteModule"],
+        _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_25__["BrowserAnimationsModule"],
+        _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MatIconModule"],
+        _angular_material_button__WEBPACK_IMPORTED_MODULE_29__["MatButtonModule"],
+        angular_tag_cloud_module__WEBPACK_IMPORTED_MODULE_31__["TagCloudModule"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](AppModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
         args: [{
@@ -3109,33 +3111,33 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector
                     _profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileComponent"],
                     _board_admin_board_admin_component__WEBPACK_IMPORTED_MODULE_10__["BoardAdminComponent"],
                     _board_user_board_user_component__WEBPACK_IMPORTED_MODULE_11__["BoardUserComponent"],
-                    _user_user_component__WEBPACK_IMPORTED_MODULE_17__["UserComponent"],
-                    _create_collection_create_collection_component__WEBPACK_IMPORTED_MODULE_18__["CreateCollectionComponent"],
+                    _user_user_component__WEBPACK_IMPORTED_MODULE_18__["UserComponent"],
+                    _create_collection_create_collection_component__WEBPACK_IMPORTED_MODULE_19__["CreateCollectionComponent"],
                     _book_collection_details_book_collection_details_component__WEBPACK_IMPORTED_MODULE_12__["BookCollectionDetailsComponent"],
                     _alcohol_collection_details_alcohol_collection_details_component__WEBPACK_IMPORTED_MODULE_13__["AlcoholCollectionDetailsComponent"],
-                    _collection_edit_collection_edit_component__WEBPACK_IMPORTED_MODULE_19__["EditCollectionComponent"],
-                    _book_create_book_create_component__WEBPACK_IMPORTED_MODULE_20__["BookCreateComponent"],
-                    _alcohol_create_alcohol_create_component__WEBPACK_IMPORTED_MODULE_29__["AlcoholCreateComponent"],
+                    _collection_edit_collection_edit_component__WEBPACK_IMPORTED_MODULE_20__["EditCollectionComponent"],
+                    _book_create_book_create_component__WEBPACK_IMPORTED_MODULE_21__["BookCreateComponent"],
+                    _alcohol_create_alcohol_create_component__WEBPACK_IMPORTED_MODULE_30__["AlcoholCreateComponent"],
                     _book_details_book_details_component__WEBPACK_IMPORTED_MODULE_14__["BookDetailsComponent"],
                     _alcohol_details_alcohol_details_component__WEBPACK_IMPORTED_MODULE_15__["AlcoholDetailsComponent"],
-                    _book_edit_book_edit_component__WEBPACK_IMPORTED_MODULE_26__["BookEditComponent"],
-                    _alcohol_edit_alcohol_edit_component__WEBPACK_IMPORTED_MODULE_27__["AlcoholEditComponent"]
+                    _book_edit_book_edit_component__WEBPACK_IMPORTED_MODULE_27__["BookEditComponent"],
+                    _alcohol_edit_alcohol_edit_component__WEBPACK_IMPORTED_MODULE_28__["AlcoholEditComponent"]
                 ],
                 imports: [
-                    _angular_material_form_field__WEBPACK_IMPORTED_MODULE_21__["MatFormFieldModule"],
-                    _angular_material_chips__WEBPACK_IMPORTED_MODULE_22__["MatChipsModule"],
+                    _angular_material_form_field__WEBPACK_IMPORTED_MODULE_22__["MatFormFieldModule"],
+                    _angular_material_chips__WEBPACK_IMPORTED_MODULE_23__["MatChipsModule"],
                     _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                     _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
                     _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
                     _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
                     _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                    _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_23__["MatAutocompleteModule"],
-                    _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_24__["BrowserAnimationsModule"],
-                    _angular_material_icon__WEBPACK_IMPORTED_MODULE_25__["MatIconModule"],
-                    _angular_material_button__WEBPACK_IMPORTED_MODULE_28__["MatButtonModule"],
-                    angular_tag_cloud_module__WEBPACK_IMPORTED_MODULE_30__["TagCloudModule"]
+                    _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_24__["MatAutocompleteModule"],
+                    _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_25__["BrowserAnimationsModule"],
+                    _angular_material_icon__WEBPACK_IMPORTED_MODULE_26__["MatIconModule"],
+                    _angular_material_button__WEBPACK_IMPORTED_MODULE_29__["MatButtonModule"],
+                    angular_tag_cloud_module__WEBPACK_IMPORTED_MODULE_31__["TagCloudModule"]
                 ],
-                providers: [_helpers_auth_interceptor__WEBPACK_IMPORTED_MODULE_16__["authInterceptorProviders"]],
+                providers: [_helpers_auth_interceptor__WEBPACK_IMPORTED_MODULE_16__["authInterceptorProviders"], _services_collection_service__WEBPACK_IMPORTED_MODULE_17__["CollectionService"]],
                 bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
             }]
     }], null, null); })();
