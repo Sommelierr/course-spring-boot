@@ -1,12 +1,10 @@
 package by.s0mmelier.service;
 
-import by.s0mmelier.Dto.AlcoholCollectionDto;
 import by.s0mmelier.Dto.AlcoholDto;
-import by.s0mmelier.Dto.BookCollectionDto;
-import by.s0mmelier.Dto.HomeAlcoholDto;
+import by.s0mmelier.Dto.FindAlcoholDto;
 import by.s0mmelier.collections.AlcoholCollection;
-import by.s0mmelier.collections.BookCollection;
 import by.s0mmelier.models.Alcohol;
+import by.s0mmelier.models.Tag;
 import by.s0mmelier.payload.request.AlcoholRequest;
 import by.s0mmelier.utils.UtilService;
 import by.s0mmelier.repository.AlcoholRepository;
@@ -14,7 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -119,9 +118,9 @@ public class AlcoholService {
         alcoholRepository.deleteById(alcoholId);
     }
 
-    public HomeAlcoholDto getLast(){
+    public FindAlcoholDto getLast(){
         if(alcoholRepository.findTopByOrderByIdDesc() != null) {
-            HomeAlcoholDto alcoholDto = new HomeAlcoholDto();
+            FindAlcoholDto alcoholDto = new FindAlcoholDto();
             Alcohol alcohol = alcoholRepository.findTopByOrderByIdDesc();
             alcoholDto.setId(alcohol.getId());
             alcoholDto.setName(alcohol.getName());
@@ -131,5 +130,20 @@ public class AlcoholService {
             return alcoholDto;
         }
         else return null;
+    }
+
+    public List<FindAlcoholDto> getAlcoholsByTag(String name){
+        Tag tag = tagService.getByName(name);
+        List<FindAlcoholDto> alcoholDtos = new ArrayList<>();
+        for(Alcohol alcohol : tag.getAlcohols()){
+            System.out.println("aid" + alcohol.getId());
+            FindAlcoholDto alcoholDto = new FindAlcoholDto();
+            alcoholDto.setId(alcohol.getId());
+            alcoholDto.setCollectionId(alcohol.getAlcoholCollection().getId());
+            alcoholDto.setName(alcohol.getName());
+            alcoholDto.setUserId(alcohol.getAlcoholCollection().getUser().getId());
+            alcoholDtos.add(alcoholDto);
+        }
+        return alcoholDtos;
     }
 }

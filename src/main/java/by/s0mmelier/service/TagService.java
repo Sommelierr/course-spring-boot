@@ -1,5 +1,6 @@
 package by.s0mmelier.service;
 
+import by.s0mmelier.Dto.CloudTagDto;
 import by.s0mmelier.models.Tag;
 import by.s0mmelier.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,18 @@ public class TagService {
 
     public List<Tag> getAlltags(){
         return tagRepository.findAll();
+    }
+
+    public List<CloudTagDto> toCloudTags(List<Tag> tags){
+        if(tags != null){
+            List<CloudTagDto> cloudTagDtos = new ArrayList<>();
+            for(Tag tag : tags){
+                CloudTagDto cloudTagDto = new CloudTagDto(tag);
+                cloudTagDtos.add(cloudTagDto);
+            }
+            return cloudTagDtos;
+        }
+        else return null;
     }
 
 }

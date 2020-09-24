@@ -1,6 +1,5 @@
 package by.s0mmelier.controllers;
 
-import by.s0mmelier.Dto.HomeCollectionDto;
 import by.s0mmelier.Dto.HomeDto;
 import by.s0mmelier.service.AlcoholService;
 import by.s0mmelier.service.BookService;
@@ -34,7 +33,7 @@ public class HomeController {
         HomeDto homeData = new HomeDto();
         homeData.setAlcohol(alcoholService.getLast());
         homeData.setBook(bookService.getLast());
-        homeData.setTags(tagService.tagsToStringList(tagService.getAlltags()));
+        homeData.setTags(tagService.toCloudTags(tagService.getAlltags()));
         homeData.setCollection(collectionService.getBiggestCollection());
         return homeData;
     }

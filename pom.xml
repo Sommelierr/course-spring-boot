@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>by.s0mmelier</groupId>
-	<artifactId>spring-boot-security-jwt</artifactId>
+	<artifactId>course-spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>i_course</name>
-	<description>Course project for Itransition</description>
+	<description>Course project</description>
 
 	<properties>
 		<java.version>1.8</java.version>

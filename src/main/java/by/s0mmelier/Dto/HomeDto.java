@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.PackagePrivate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -12,8 +13,8 @@ import java.util.List;
 @PackagePrivate
 @NoArgsConstructor
 public class HomeDto {
-    List<String> tags;
-    HomeBookDto book;
-    HomeAlcoholDto alcohol;
+    List<CloudTagDto> tags = new ArrayList<>();
+    FindBookDto book;
+    FindAlcoholDto alcohol;
     HomeCollectionDto collection;
 }

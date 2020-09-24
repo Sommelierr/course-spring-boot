@@ -1,11 +1,12 @@
 package by.s0mmelier.service;
 
 import by.s0mmelier.Dto.BookDto;
-import by.s0mmelier.Dto.HomeAlcoholDto;
-import by.s0mmelier.Dto.HomeBookDto;
+import by.s0mmelier.Dto.FindAlcoholDto;
+import by.s0mmelier.Dto.FindBookDto;
 import by.s0mmelier.collections.BookCollection;
 import by.s0mmelier.models.Alcohol;
 import by.s0mmelier.models.Book;
+import by.s0mmelier.models.Tag;
 import by.s0mmelier.payload.request.BookRequest;
 import by.s0mmelier.repository.BookRepository;
 import by.s0mmelier.utils.UtilService;
@@ -13,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -121,10 +122,10 @@ public class BookService {
         return bookDto;
     }
 
-    public HomeBookDto getLast(){
+    public FindBookDto getLast(){
         if(bookRepository.findTopByOrderByIdDesc() != null) {
             Book book = bookRepository.findTopByOrderByIdDesc();
-            HomeBookDto bookDto = new HomeBookDto();
+            FindBookDto bookDto = new FindBookDto();
             bookDto.setId(book.getId());
             bookDto.setName(book.getName());
             bookDto.setUserId(book.getBookCollection().getUser().getId());
@@ -132,5 +133,21 @@ public class BookService {
             return bookDto;
         }
         else return null;
+    }
+
+    public List<FindBookDto> getBooksByTag(String name){
+        Tag tag = tagService.getByName(name);
+        List<FindBookDto> bookDtos = new ArrayList<>();
+        System.out.println(tag.getBooks() == null);
+        for(Book book : tag.getBooks()){
+            System.out.println("bid"+book.getId());
+            FindBookDto bookDto = new FindBookDto();
+            bookDto.setId(book.getId());
+            bookDto.setCollectionId(book.getBookCollection().getId());
+            bookDto.setName(book.getName());
+            bookDto.setUserId(book.getBookCollection().getUser().getId());
+            bookDtos.add(bookDto);
+        }
+        return bookDtos;
     }
 }

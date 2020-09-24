@@ -51,6 +51,7 @@ public class CollectionController {
     public CollectionDto getCollection(@PathVariable("userId") long userId,
                                        @PathVariable("collectionId") long collectionId,
                                        @PathVariable("collectionType") String collectionType){
+        System.out.println("uid" + userId+ "c" + collectionId + "ct");
         if(collectionType.equals("bc")) return bookCollectionService.getBookCollectionDto(collectionId);
         if(collectionType.equals("ac")) return alcoholCollectionService.getAlcoholCollectionDto(collectionId);
         else return null;

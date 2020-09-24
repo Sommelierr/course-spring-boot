@@ -1,9 +1,6 @@
 package by.s0mmelier.service;
 
 import by.s0mmelier.Dto.BookCollectionDto;
-import by.s0mmelier.Dto.HomeBookDto;
-import by.s0mmelier.Dto.HomeCollectionDto;
-import by.s0mmelier.collections.AlcoholCollection;
 import by.s0mmelier.collections.BookCollection;
 import by.s0mmelier.models.Book;
 import by.s0mmelier.repository.BookCollectionRepository;
