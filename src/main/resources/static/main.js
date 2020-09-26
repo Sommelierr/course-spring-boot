@@ -84,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API_URL = 'https://i-course.herokuapp.com/api/admin/';
+const API_URL = 'http://localhost:8080/api/admin/';
 //http://localhost:8080
 class AdminService {
     constructor(http) {
@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const AUTH_API = 'https://i-course.herokuapp.com/api/auth/';
+const AUTH_API = 'http://localhost:8080/api/auth/';
 const httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
 };
@@ -192,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API = 'https://i-course.herokuapp.com/api/';
+const API = 'http://localhost:8080/api/';
 const httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
 };
@@ -264,7 +264,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const URL = 'https://i-course.herokuapp.com/api/';
+const URL = 'http://localhost:8080/api/';
 class FindService {
     constructor(http) {
         this.http = http;
@@ -303,7 +303,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const URL = 'https://i-course.herokuapp.com/api/';
+const URL = 'http://localhost:8080/api/';
 class ItemService {
     constructor(http) {
         this.http = http;
@@ -507,7 +507,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API_URL = 'https://i-course.herokuapp.com/api/test/';
+const API_URL = 'http://localhost:8080/api/test/';
 class UserService {
     constructor(http) {
         this.http = http;
@@ -4905,8 +4905,10 @@ class BookDetailsComponent {
     ngOnInit() {
         this.currentUser = this.token.getUser();
         this.setPathVariables();
-        this.getLikeStatus();
-        this.getUserStatus();
+        if (this.currentUser != null && this.currentUser != undefined) {
+            this.getLikeStatus();
+            this.getUserStatus();
+        }
         this.getBook();
         this.getCollectionBitMask();
     }
