@@ -85,7 +85,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //const API_URL = 'http://localhost:8080/api/admin/';
-const API_URL = 'https://i-course.herokuapp.com/api/admin';
+const API_URL = 'https://i-course.herokuapp.com/api/admin/';
 class AdminService {
     constructor(http) {
         this.http = http;
