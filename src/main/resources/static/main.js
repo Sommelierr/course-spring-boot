@@ -85,6 +85,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const API_URL = 'https://i-course.herokuapp.com/api/admin/';
+//http://localhost:8080
 class AdminService {
     constructor(http) {
         this.http = http;
@@ -191,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API_URL = 'https://i-course.herokuapp.com/api/';
+const API = 'https://i-course.herokuapp.com/api/';
 const httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
 };
@@ -200,7 +201,7 @@ class CollectionService {
         this.http = http;
     }
     getCollectionCreaterForm(id) {
-        return this.http.get(API_URL + `${id}` + '/' + 'create', { responseType: "json" });
+        return this.http.get(API + `${id}` + '/' + 'create', httpOptions);
     }
     createCollection(collection, image, id) {
         const formData = new FormData();
@@ -208,13 +209,13 @@ class CollectionService {
         formData.append('description', collection.description);
         formData.append('theme', collection.theme);
         formData.append('image', image);
-        return this.http.post(API_URL + `${id}` + '/' + 'create', formData);
+        return this.http.post(API + `${id}` + '/' + 'create', formData);
     }
     delete(userId, collectionId, collectionType) {
-        return this.http.delete(API_URL + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}`);
+        return this.http.delete(API + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}`);
     }
     getCollection(userId, collectionId, collectionType) {
-        return this.http.get(API_URL + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}`);
+        return this.http.get(API + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}`);
     }
     updateCollection(collection, image, userId, collectionType, collectionId) {
         const formData = new FormData();
@@ -222,18 +223,18 @@ class CollectionService {
         formData.append('description', collection.description);
         formData.append('theme', 'nothing');
         formData.append('image', image);
-        return this.http.put(API_URL + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}`, formData);
+        return this.http.put(API + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}`, formData);
     }
     setCollectionBitMask(bitMask, userId, collectionId, collectionType) {
         const formData = new FormData();
         formData.append('bitMask', bitMask);
-        return this.http.put(API_URL + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}` + '/bitMask', formData);
+        return this.http.put(API + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}` + '/bitMask', formData);
     }
     getBookCollectionBitMask(collectionId) {
-        return this.http.get(API_URL + 'bookCollection/' + `${collectionId}` + '/bitMask');
+        return this.http.get(API + 'bookCollection/' + `${collectionId}` + '/bitMask');
     }
     getAlcoholCollectionBitMask(collectionId) {
-        return this.http.get(API_URL + 'alcoholCollection/' + `${collectionId}` + '/bitMask');
+        return this.http.get(API + 'alcoholCollection/' + `${collectionId}` + '/bitMask');
     }
 }
 CollectionService.ɵfac = function CollectionService_Factory(t) { return new (t || CollectionService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -4903,11 +4904,9 @@ class BookDetailsComponent {
     ;
     ngOnInit() {
         this.currentUser = this.token.getUser();
-        if (this.currentUser != null) {
-            this.getLikeStatus();
-            this.getUserStatus();
-        }
         this.setPathVariables();
+        this.getLikeStatus();
+        this.getUserStatus();
         this.getBook();
         this.getCollectionBitMask();
     }
@@ -6553,7 +6552,7 @@ class HomeComponent {
     ngOnInit() {
         this.findService.getHome().subscribe(data => {
             this.homeData = data;
-            this.cloudTags = this.homeData.tags;
+            this.cloudTags = data.tags;
             this.collection = data.collection;
             this.alcohol = data.alcohol;
             this.book = data.book;

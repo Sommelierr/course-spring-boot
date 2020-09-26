@@ -31,8 +31,6 @@ public class BookController {
 
     @GetMapping("book/{bookId}")
     public BookDto getBook(@PathVariable("bookId") long bookId){
-        System.out.println(bookId);
-        System.out.println(bookService.getBook(bookId).get().getName());
         return bookService.getBookDto(bookId);
     }
 

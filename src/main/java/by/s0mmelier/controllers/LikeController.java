@@ -37,6 +37,7 @@ public class LikeController {
     public void like(@PathVariable("userId") long userId,
                         @PathVariable("collectionType") String collectionType,
                         @PathVariable("itemId") long itemId){
+        System.out.println(userId + " " + collectionType + " " + itemId);
         if(collectionType.equals("bc")) likeService.likeBook(itemId, userId);
         if(collectionType.equals("ac")) likeService.likeAlcohol(itemId,userId);
     }
