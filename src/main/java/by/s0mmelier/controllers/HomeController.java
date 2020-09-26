@@ -31,18 +31,10 @@ public class HomeController {
     @GetMapping("/home")
     public HomeDto getHome(){
         HomeDto homeData = new HomeDto();
-        if(alcoholService.getLast() != null) {
             homeData.setAlcohol(alcoholService.getLast());
-        }
-        if(bookService.getLast() != null) {
             homeData.setBook(bookService.getLast());
-        }
-        if(tagService.getAlltags() !=null) {
             homeData.setTags(tagService.toCloudTags(tagService.getAlltags()));
-        }
-        if(collectionService.getBiggestCollection() != null) {
             homeData.setCollection(collectionService.getBiggestCollection());
-        }
         return homeData;
     }
 }
