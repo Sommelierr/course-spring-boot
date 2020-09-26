@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const AUTH_API = 'http://localhost:8080/api/auth/';
+//const API_URL = 'http://localhost:8080/api/auth/';
 const API_URL = 'https://i-course.herokuapp.com/api/auth/';
 const httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
@@ -152,13 +152,13 @@ class AuthService {
         this.http = http;
     }
     login(credentials) {
-        return this.http.post(AUTH_API + 'signin', {
+        return this.http.post(API_URL + 'signin', {
             username: credentials.username,
             password: credentials.password
         }, httpOptions);
     }
     register(user) {
-        return this.http.post(AUTH_API + 'signup', {
+        return this.http.post(API_URL + 'signup', {
             username: user.username,
             email: user.email,
             password: user.password
