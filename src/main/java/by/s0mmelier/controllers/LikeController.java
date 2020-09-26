@@ -9,6 +9,7 @@ import by.s0mmelier.service.BookService;
 import by.s0mmelier.service.LikeService;
 import by.s0mmelier.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,12 +35,12 @@ public class LikeController {
 
     @PostMapping("/like")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public void like(@PathVariable("userId") long userId,
-                        @PathVariable("collectionType") String collectionType,
-                        @PathVariable("itemId") long itemId){
-        System.out.println(userId + " " + collectionType + " " + itemId);
+    public ResponseEntity<?> like(@PathVariable("userId") long userId,
+                                  @PathVariable("collectionType") String collectionType,
+                                  @PathVariable("itemId") long itemId){
         if(collectionType.equals("bc")) likeService.likeBook(itemId, userId);
         if(collectionType.equals("ac")) likeService.likeAlcohol(itemId,userId);
+        return ResponseEntity.ok("ok");
     }
 
     @GetMapping("/like")
