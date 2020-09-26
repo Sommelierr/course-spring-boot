@@ -84,8 +84,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API_URL = 'http://localhost:8080/api/admin/';
-//http://localhost:8080
+//const API_URL = 'http://localhost:8080/api/admin/';
+const API_URL = 'https://i-course.herokuapp.com/api/admin';
 class AdminService {
     constructor(http) {
         this.http = http;
@@ -143,6 +143,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
+const API_URL = 'https://i-course.herokuapp.com/api/auth/';
 const httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
 };
@@ -192,7 +193,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API = 'http://localhost:8080/api/';
+//const API = 'http://localhost:8080/api/';
+const API = 'https://i-course.herokuapp.com/api/';
 const httpOptions = {
     headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
 };
@@ -264,16 +266,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const URL = 'http://localhost:8080/api/';
+//const API_URL = 'http://localhost:8080/api/';
+const API_URL = 'https://i-course.herokuapp.com/api/';
 class FindService {
     constructor(http) {
         this.http = http;
     }
     getHome() {
-        return this.http.get(URL + 'home', { responseType: 'json' });
+        return this.http.get(API_URL + 'home', { responseType: 'json' });
     }
     getFindResult(word) {
-        return this.http.get(URL + 'find/' + `${word}`, { responseType: 'json' });
+        return this.http.get(API_URL + 'find/' + `${word}`, { responseType: 'json' });
     }
 }
 FindService.ɵfac = function FindService_Factory(t) { return new (t || FindService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -303,16 +306,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const URL = 'http://localhost:8080/api/';
+//const API_URL = 'http://localhost:8080/api/';
+const API_URL = 'https://i-course.herokuapp.com/api/';
 class ItemService {
     constructor(http) {
         this.http = http;
     }
     getBookCollectionBitMask(userId, collectionId, collectionType) {
-        return this.http.get(URL + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}` + "/b", { responseType: 'json' });
+        return this.http.get(API_URL + 'user/' + `${userId}` + '/' + `${collectionType}` + '/' + `${collectionId}` + "/b", { responseType: 'json' });
     }
     getAllTags() {
-        return this.http.get(URL + 'tags', { responseType: 'json' });
+        return this.http.get(API_URL + 'tags', { responseType: 'json' });
     }
     createBook(book, tags, collectionId) {
         const formData = new FormData();
@@ -333,7 +337,7 @@ class ItemService {
         formData.append('publishingDateOnEnglish', book.publishingDateOnEnglish);
         formData.append('publishingDateOnRussian', book.publishingDateOnRussian);
         formData.append('publishingDateOnJapan', book.publishingDateOnJapan);
-        return this.http.post(URL + 'book/' + `${collectionId}` + '/create', formData);
+        return this.http.post(API_URL + 'book/' + `${collectionId}` + '/create', formData);
     }
     updateBook(book, bookId) {
         const formData = new FormData();
@@ -354,30 +358,30 @@ class ItemService {
         formData.append('publishingDateOnEnglish', book.publishingDateOnEnglish);
         formData.append('publishingDateOnRussian', book.publishingDateOnRussian);
         formData.append('publishingDateOnJapan', book.publishingDateOnJapan);
-        return this.http.put(URL + 'book/' + `${bookId}`, formData);
+        return this.http.put(API_URL + 'book/' + `${bookId}`, formData);
     }
     getBook(bookId) {
-        return this.http.get(URL + 'book/' + `${bookId}`, { responseType: 'json' });
+        return this.http.get(API_URL + 'book/' + `${bookId}`, { responseType: 'json' });
     }
     deleteBook(bookId) {
-        return this.http.delete(URL + 'book/' + `${bookId}`);
+        return this.http.delete(API_URL + 'book/' + `${bookId}`);
     }
     setBookBitMask(bookId, bitMask) {
         const formData = new FormData();
         formData.append('bitMask', bitMask);
-        return this.http.post(URL + 'book/' + `${bookId}` + '/bitMask', formData);
+        return this.http.post(API_URL + 'book/' + `${bookId}` + '/bitMask', formData);
     }
     getItemTags(collectionType, itemId) {
-        return this.http.get(URL + `${collectionType}` + '/' + `${itemId}`, { responseType: 'json' });
+        return this.http.get(API_URL + `${collectionType}` + '/' + `${itemId}`, { responseType: 'json' });
     }
     like(userId, itemId, collectionType) {
-        return this.http.post(URL + `${userId}` + '/' + `${collectionType}` + '/' + `${itemId}` + '/like', { responseType: 'json' });
+        return this.http.post(API_URL + `${userId}` + '/' + `${collectionType}` + '/' + `${itemId}` + '/like', { responseType: 'json' });
     }
     unlike(userId, itemId, collectionType) {
-        return this.http.post(URL + `${userId}` + '/' + `${collectionType}` + '/' + `${itemId}` + '/unlike', { responseType: 'json' });
+        return this.http.post(API_URL + `${userId}` + '/' + `${collectionType}` + '/' + `${itemId}` + '/unlike', { responseType: 'json' });
     }
     getLikeStatus(userId, itemId, collectionType) {
-        return this.http.get(URL + `${userId}` + '/' + `${collectionType}` + '/' + `${itemId}` + '/like', { responseType: 'json' });
+        return this.http.get(API_URL + `${userId}` + '/' + `${collectionType}` + '/' + `${itemId}` + '/like', { responseType: 'json' });
     }
     createAlcohol(alcohol, tags, collectionId) {
         const formData = new FormData();
@@ -398,7 +402,7 @@ class ItemService {
         formData.append('manufactureDate', alcohol.manufactureDate);
         formData.append('developmentDate', alcohol.developmentDate);
         formData.append('manufactureDateInBelarus', alcohol.manufactureDateInBelarus);
-        return this.http.post(URL + 'alcohol/' + `${collectionId}` + '/create', formData);
+        return this.http.post(API_URL + 'alcohol/' + `${collectionId}` + '/create', formData);
     }
     updateAlcohol(alcohol, alcoholId) {
         const formData = new FormData();
@@ -419,18 +423,18 @@ class ItemService {
         formData.append('manufactureDate', alcohol.manufactureDate);
         formData.append('developmentDate', alcohol.developmentDate);
         formData.append('manufactureDateInBelarus', alcohol.manufactureDateInBelarus);
-        return this.http.put(URL + 'alcohol/' + `${alcoholId}`, formData);
+        return this.http.put(API_URL + 'alcohol/' + `${alcoholId}`, formData);
     }
     getAlcohol(alcoholId) {
-        return this.http.get(URL + 'alcohol/' + `${alcoholId}`, { responseType: 'json' });
+        return this.http.get(API_URL + 'alcohol/' + `${alcoholId}`, { responseType: 'json' });
     }
     deleteAlcohol(alcoholId) {
-        return this.http.delete(URL + 'alcohol/' + `${alcoholId}`);
+        return this.http.delete(API_URL + 'alcohol/' + `${alcoholId}`);
     }
     setAlcoholBitMask(alcoholId, bitMask) {
         const formData = new FormData();
         formData.append('bitMask', bitMask);
-        return this.http.post(URL + 'alcohol/' + `${alcoholId}` + '/bitMask', formData);
+        return this.http.post(API_URL + 'alcohol/' + `${alcoholId}` + '/bitMask', formData);
     }
 }
 ItemService.ɵfac = function ItemService_Factory(t) { return new (t || ItemService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -507,7 +511,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const API_URL = 'http://localhost:8080/api/test/';
+//const API_URL = 'http://localhost:8080/api/test/';
+const API_URL = 'https://i-course.herokuapp.com/api/test/';
 class UserService {
     constructor(http) {
         this.http = http;
