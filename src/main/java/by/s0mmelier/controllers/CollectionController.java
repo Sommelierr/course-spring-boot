@@ -16,7 +16,7 @@ import java.io.IOException;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class CollectionController {
 
     @Autowired
@@ -31,13 +31,13 @@ public class CollectionController {
     @Autowired
     CollectionService collectionService;
 
-    @GetMapping("{id}/create")
+    @GetMapping("/{id}/create")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void createCollection() throws IOException {
         collectionService.initThems();
     }
 
-    @PostMapping("{id}/create")
+    @PostMapping("/{id}/create")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void createCollection(@PathVariable("id") long id,
                                     @Valid @ModelAttribute CollectionRequest collectionRequest) throws Exception{
@@ -47,7 +47,7 @@ public class CollectionController {
             userService.addAlcoholCollection(id, alcoholCollectionService.createCollection(collectionRequest)); }
     }
 
-    @GetMapping("user/{userId}/{collectionType}/{collectionId}")
+    @GetMapping("/user/{userId}/{collectionType}/{collectionId}")
     public CollectionDto getCollection(@PathVariable("userId") long userId,
                                        @PathVariable("collectionId") long collectionId,
                                        @PathVariable("collectionType") String collectionType){
@@ -58,7 +58,7 @@ public class CollectionController {
     }
 
 
-    @RequestMapping(value = "user/{userId}/{collectionType}/{collectionId}", //
+    @RequestMapping(value = "/user/{userId}/{collectionType}/{collectionId}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     @ResponseBody
@@ -69,7 +69,7 @@ public class CollectionController {
         if(collectionType.equals("ac")) alcoholCollectionService.deleteAlcoholCollection(collectionId);
     }
 
-    @RequestMapping(value = "user/{userId}/{collectionType}/{collectionId}", //
+    @RequestMapping(value = "/user/{userId}/{collectionType}/{collectionId}", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     @ResponseBody
@@ -84,7 +84,7 @@ public class CollectionController {
             alcoholCollectionService.updateCollection(collectionRequest, collectionId); }
     }
 
-    @RequestMapping(value = "user/{userId}/{collectionType}/{collectionId}/bitMask", //
+    @RequestMapping(value = "/user/{userId}/{collectionType}/{collectionId}/bitMask", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     @ResponseBody
@@ -99,14 +99,14 @@ public class CollectionController {
             alcoholCollectionService.setBitMask(bitMask, collectionId); }
     }
 
-    @GetMapping("bookCollection/{collectionId}/bitMask")
+    @GetMapping("/bookCollection/{collectionId}/bitMask")
     public CollectionBitMaskDto getBookCollectionBitMask(@PathVariable("collectionId") long collectionId){
         CollectionBitMaskDto bitMaskDto = new CollectionBitMaskDto();
         bitMaskDto.setBitMask(bookCollectionService.getBookCollection(collectionId).getBitMask());
         return bitMaskDto;
     }
 
-    @GetMapping("alcoholCollection/{collectionId}/bitMask")
+    @GetMapping("/alcoholCollection/{collectionId}/bitMask")
     public CollectionBitMaskDto getAlcoholCollectionBitMask(@PathVariable("collectionId") long collectionId){
         CollectionBitMaskDto bitMaskDto = new CollectionBitMaskDto();
         bitMaskDto.setBitMask(alcoholCollectionService.getAlcoholCollection(collectionId).getBitMask());
