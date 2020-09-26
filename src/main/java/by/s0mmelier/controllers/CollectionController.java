@@ -31,7 +31,9 @@ public class CollectionController {
     @Autowired
     CollectionService collectionService;
 
-    @GetMapping("/{id}/create")
+    @RequestMapping(value = "/{id}/create", //
+            method = RequestMethod.GET, //
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void createCollection() throws IOException {
         collectionService.initThems();
