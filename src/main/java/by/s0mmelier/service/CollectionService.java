@@ -41,23 +41,19 @@ public class CollectionService {
         }
     }
 
-    public HomeCollectionDto getBiggestCollection(){
-        BookCollection bookCollection = bookCollectionService.getBiggestBookCollection();
+    public HomeCollectionDto getBiggestAlcoholHomeCollection(){
         AlcoholCollection alcoholCollection = alcoholCollectionService.getBiggestAlcoholCollection();
-        System.out.println(bookCollection == null);
-        System.out.println(alcoholCollection == null);
-        if(bookCollection == null && alcoholCollection == null) return null;
-        if(bookCollection == null && alcoholCollection != null)
-            return alcoholCollectionToHomeCollectionDto(alcoholCollection);
-        if(bookCollection != null && alcoholCollection == null)
-            return bookCollectionToHomeCollectionDto(bookCollection);
-        if(bookCollection.getCountOfBooks() > alcoholCollection.getCountOfAlcohols()){
-            return bookCollectionToHomeCollectionDto(bookCollection);
-        }
-        else return alcoholCollectionToHomeCollectionDto(alcoholCollection);
+        if(alcoholCollection != null) return convertToHomeCollectionDto(alcoholCollection);
+        else return null;
     }
 
-    public HomeCollectionDto bookCollectionToHomeCollectionDto(BookCollection collection){
+    public HomeCollectionDto getBiggestBookHomeCollection(){
+        BookCollection bookCollection = bookCollectionService.getBiggestBookCollection();
+        if(bookCollection != null) return convertToHomeCollectionDto(bookCollection);
+        else return null;
+    }
+
+    public HomeCollectionDto convertToHomeCollectionDto(BookCollection collection){
             HomeCollectionDto homeCollection = new HomeCollectionDto();
             homeCollection.setId(collection.getId());
             homeCollection.setName(collection.getName());
@@ -66,7 +62,7 @@ public class CollectionService {
             return homeCollection;
     }
 
-    public HomeCollectionDto alcoholCollectionToHomeCollectionDto(AlcoholCollection collection){
+    public HomeCollectionDto convertToHomeCollectionDto(AlcoholCollection collection){
             HomeCollectionDto homeCollection = new HomeCollectionDto();
             homeCollection.setId(collection.getId());
             homeCollection.setName(collection.getName());

@@ -16,5 +16,6 @@ public class HomeDto {
     List<CloudTagDto> tags = new ArrayList<>();
     FindBookDto book;
     FindAlcoholDto alcohol;
-    HomeCollectionDto collection;
+    HomeCollectionDto alcoholCollection;
+    HomeCollectionDto bookCollection;
 }
