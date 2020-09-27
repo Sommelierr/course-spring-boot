@@ -31,8 +31,8 @@ public class HomeController {
     @GetMapping("/home")
     public HomeDto getHome(){
         HomeDto homeData = new HomeDto();
-            //homeData.setAlcohol(alcoholService.getLast());
-            //homeData.setBook(bookService.getLast());
+            homeData.setAlcohol(alcoholService.getLast());
+            homeData.setBook(bookService.getLast());
             homeData.setTags(tagService.toCloudTags(tagService.getAlltags()));
             //homeData.setCollection(collectionService.getBiggestCollection());
         return homeData;
