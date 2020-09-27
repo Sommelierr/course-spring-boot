@@ -80,16 +80,16 @@ public class BookCollectionService {
     }
 
     public BookCollection getBiggestBookCollection(){
-        BookCollection bookCollection = new BookCollection();
-        bookCollection.setCountOfBooks(0);
-        if(bookCollectionRepository.findAll() != null) {
+        if(!bookCollectionRepository.findAll().isEmpty()) {
+            BookCollection bookCollection = new BookCollection();
+            bookCollection.setCountOfBooks(0);
             for (BookCollection collection : bookCollectionRepository.findAll()) {
-                if (collection.getCountOfBooks() > bookCollection.getCountOfBooks()) {
+                if (collection.getCountOfBooks() >= bookCollection.getCountOfBooks()) {
                     bookCollection = collection;
                 }
             }
+            return bookCollection;
         }
         else return null;
-        return bookCollection;
     }
 }

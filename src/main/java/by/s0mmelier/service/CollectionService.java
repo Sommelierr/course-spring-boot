@@ -44,6 +44,8 @@ public class CollectionService {
     public HomeCollectionDto getBiggestCollection(){
         BookCollection bookCollection = bookCollectionService.getBiggestBookCollection();
         AlcoholCollection alcoholCollection = alcoholCollectionService.getBiggestAlcoholCollection();
+        System.out.println(bookCollection == null);
+        System.out.println(alcoholCollection == null);
         if(bookCollection == null && alcoholCollection == null) return null;
         if(bookCollection == null && alcoholCollection != null)
             return alcoholCollectionToHomeCollectionDto(alcoholCollection);

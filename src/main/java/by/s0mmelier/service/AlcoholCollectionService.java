@@ -82,16 +82,16 @@ public class AlcoholCollectionService {
     }
 
     public AlcoholCollection getBiggestAlcoholCollection(){
-        AlcoholCollection alcoholCollection = new AlcoholCollection();
-        alcoholCollection.setCountOfAlcohols(0);
-        if(alcoholCollectionRepository.findAll() != null) {
+        if(!alcoholCollectionRepository.findAll().isEmpty()) {
+            AlcoholCollection alcoholCollection = new AlcoholCollection();
+            alcoholCollection.setCountOfAlcohols(0);
             for (AlcoholCollection collection : alcoholCollectionRepository.findAll()) {
-                if (collection.getCountOfAlcohols() > alcoholCollection.getCountOfAlcohols()) {
+                if (collection.getCountOfAlcohols() >= alcoholCollection.getCountOfAlcohols()) {
                     alcoholCollection = collection;
                 }
             }
+            return alcoholCollection;
         }
         else return null;
-        return alcoholCollection;
     }
 }
