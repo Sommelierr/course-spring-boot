@@ -34,7 +34,7 @@ public class HomeController {
             homeData.setAlcohol(alcoholService.getLast());
             homeData.setBook(bookService.getLast());
             homeData.setTags(tagService.toCloudTags(tagService.getAlltags()));
-            //homeData.setCollection(collectionService.getBiggestCollection());
+            homeData.setCollection(collectionService.getBiggestCollection());
         return homeData;
     }
 }
