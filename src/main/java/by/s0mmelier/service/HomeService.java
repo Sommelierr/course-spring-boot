@@ -18,12 +18,6 @@ public class HomeService {
     @Autowired
     AlcoholService alcoholService;
     public HomeDto getHomeData(){
-        HomeDto homeData = new HomeDto();
-        homeData.setAlcohol(alcoholService.getLast());
-        homeData.setBook(bookService.getLast());
-        homeData.setTags(tagService.toCloudTags(tagService.getAlltags()));
-        homeData.setAlcoholCollection(collectionService.getBiggestAlcoholHomeCollection());
-        homeData.setBookCollection(collectionService.getBiggestBookHomeCollection());
-        return homeData;
+        return null;
     }
 }
