@@ -4,6 +4,8 @@ import by.s0mmelier.collections.BookCollection;
 import by.s0mmelier.collections.AlcoholCollection;
 import by.s0mmelier.collections.MarkCollection;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import lombok.experimental.PackagePrivate;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +16,11 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(	name = "c_user",
 		uniqueConstraints = {
@@ -86,108 +92,10 @@ public class User {
 		likeBooks.forEach(position -> position.getUsersLike().remove(this));
 	}
 
-	public User() {
-	}
 
 	public User(String username, String email, String password) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-	public List<BookCollection> getBookCollections() {
-		return bookCollections;
-	}
-
-	public void setBookCollections(List<BookCollection> bookCollections) {
-		this.bookCollections = bookCollections;
-	}
-
-	public List<AlcoholCollection> getAlcoholCollections() {
-		return alcoholCollections;
-	}
-
-	public void setAlcoholCollections(List<AlcoholCollection> alcoholCollections) {
-		this.alcoholCollections = alcoholCollections;
-	}
-
-	public List<MarkCollection> getMarkCollections() {
-		return markCollections;
-	}
-
-	public void setMarkCollections(List<MarkCollection> markCollections) {
-		this.markCollections = markCollections;
-	}
-
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
-	public boolean isBlocked() {
-		return blocked;
-	}
-
-	public void setBlocked(boolean blocked) {
-		this.blocked = blocked;
-	}
-
-	public List<Book> getLikeBooks() {
-		return likeBooks;
-	}
-
-	public void setLikeBooks(List<Book> likeBooks) {
-		this.likeBooks = likeBooks;
-	}
-
-	public List<Alcohol> getLikeAlcohols() {
-		return likeAlcohols;
-	}
-
-	public void setLikeAlcohols(List<Alcohol> likeAlcohols) {
-		this.likeAlcohols = likeAlcohols;
 	}
 }

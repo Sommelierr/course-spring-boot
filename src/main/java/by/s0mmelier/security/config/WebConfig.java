@@ -1,4 +1,4 @@
-package by.s0mmelier.security.services;
+package by.s0mmelier.security.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;

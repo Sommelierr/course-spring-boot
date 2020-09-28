@@ -1,7 +1,6 @@
 package by.s0mmelier.controllers;
 
 import by.s0mmelier.Dto.CollectionDto;
-import by.s0mmelier.Dto.HomeCollectionDto;
 import by.s0mmelier.service.*;
 import by.s0mmelier.Dto.CollectionBitMaskDto;
 import by.s0mmelier.payload.request.CollectionRequest;
@@ -14,19 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.IOException;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "https://i-course.herokuapp.com", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class CollectionController {
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    BookCollectionService bookCollectionService;
-
-    @Autowired
-    AlcoholCollectionService alcoholCollectionService;
 
     @Autowired
     CollectionService collectionService;
@@ -39,24 +29,20 @@ public class CollectionController {
         collectionService.initThems();
     }
 
-    @PostMapping("/{id}/create")
+    @RequestMapping(value = "/{id}/create", //
+            method = RequestMethod.POST, //
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, consumes = {"multipart/form-data"})
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void createCollection(@PathVariable("id") long id,
-                                    @Valid @ModelAttribute CollectionRequest collectionRequest) throws Exception{
-        if(collectionRequest.getTheme().equals("Books")){
-            userService.addBookCollection(id, bookCollectionService.createCollection(collectionRequest)); }
-        if(collectionRequest.getTheme().equals("Alcohol")) {
-            userService.addAlcoholCollection(id, alcoholCollectionService.createCollection(collectionRequest)); }
+                                    @ModelAttribute CollectionRequest collectionRequest) throws Exception{
+        collectionService.createCollection(id, collectionRequest);
     }
 
     @GetMapping("/user/{userId}/{collectionType}/{collectionId}")
     public CollectionDto getCollection(@PathVariable("userId") long userId,
                                        @PathVariable("collectionId") long collectionId,
                                        @PathVariable("collectionType") String collectionType){
-        System.out.println("uid" + userId+ "c" + collectionId + "ct");
-        if(collectionType.equals("bc")) return bookCollectionService.getBookCollectionDto(collectionId);
-        if(collectionType.equals("ac")) return alcoholCollectionService.getAlcoholCollectionDto(collectionId);
-        else return null;
+        return collectionService.getCollectionDto(collectionType, collectionId);
     }
 
 
@@ -67,8 +53,7 @@ public class CollectionController {
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void deleteCollection( @PathVariable("collectionId") long collectionId,
                                     @PathVariable("collectionType") String collectionType) {
-        if(collectionType.equals("bc")) bookCollectionService.deleteBookCollection(collectionId);
-        if(collectionType.equals("ac")) alcoholCollectionService.deleteAlcoholCollection(collectionId);
+        collectionService.deleteCollection(collectionType, collectionId);
     }
 
     @RequestMapping(value = "/user/{userId}/{collectionType}/{collectionId}", //
@@ -80,38 +65,27 @@ public class CollectionController {
                                  @PathVariable("collectionId") long collectionId,
                                  @PathVariable("collectionType") String collectionType,
                                  @Valid @ModelAttribute CollectionRequest collectionRequest) throws IOException {
-        if(collectionType.equals("bc")){ // bc = book collection type on URL
-            bookCollectionService.updateCollection(collectionRequest, collectionId); }
-        if(collectionType.equals("ac")) { //bc = alcohol collection type on URL
-            alcoholCollectionService.updateCollection(collectionRequest, collectionId); }
+        collectionService.updateCollection(collectionType,collectionId,collectionRequest);
     }
 
     @RequestMapping(value = "/user/{userId}/{collectionType}/{collectionId}/bitMask", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void setBitMask(@PathVariable("userId") long userId,
                                  @PathVariable("collectionId") long collectionId,
                                  @PathVariable("collectionType") String collectionType,
                                  @RequestParam("bitMask") long bitMask) throws IOException {
-        if(collectionType.equals("bc")){ // bc = book collection type on URL
-            bookCollectionService.setBitMask(bitMask, collectionId); }
-        if(collectionType.equals("ac")) { //bc = alcohol collection type on URL
-            alcoholCollectionService.setBitMask(bitMask, collectionId); }
+        collectionService.setBitMask(collectionType,collectionId,bitMask);
     }
 
     @GetMapping("/bookCollection/{collectionId}/bitMask")
     public CollectionBitMaskDto getBookCollectionBitMask(@PathVariable("collectionId") long collectionId){
-        CollectionBitMaskDto bitMaskDto = new CollectionBitMaskDto();
-        bitMaskDto.setBitMask(bookCollectionService.getBookCollection(collectionId).getBitMask());
-        return bitMaskDto;
+        return collectionService.getBookCollectionBitMask(collectionId);
     }
 
     @GetMapping("/alcoholCollection/{collectionId}/bitMask")
     public CollectionBitMaskDto getAlcoholCollectionBitMask(@PathVariable("collectionId") long collectionId){
-        CollectionBitMaskDto bitMaskDto = new CollectionBitMaskDto();
-        bitMaskDto.setBitMask(alcoholCollectionService.getAlcoholCollection(collectionId).getBitMask());
-        return bitMaskDto;
+        return collectionService.getAlcoholCollectionBitMask(collectionId);
     }
 }

@@ -18,6 +18,5 @@ import java.util.List;
 public class CollectionsListDto {
     List<BookCollection> bookCollections = new ArrayList<>();
     List<AlcoholCollection> alcoholCollections = new ArrayList<>();
-    List<MarkCollection> markCollections = new ArrayList<>();
     boolean blocked;
 }

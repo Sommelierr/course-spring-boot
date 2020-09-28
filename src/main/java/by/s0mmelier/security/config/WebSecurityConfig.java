@@ -1,4 +1,4 @@
-package by.s0mmelier.security;
+package by.s0mmelier.security.config;
 
 import by.s0mmelier.security.jwt.AuthEntryPointJwt;
 import by.s0mmelier.security.jwt.AuthTokenFilter;
@@ -53,10 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable()
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
-			.antMatchers("/api/test/**").permitAll()
-				.antMatchers("/api/test/user/**").permitAll()
-				.antMatchers("/api/admin/**").hasRole("ADMIN")
+			.authorizeRequests().antMatchers("/api/admin/**").hasRole("ADMIN")
 			.anyRequest().permitAll();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

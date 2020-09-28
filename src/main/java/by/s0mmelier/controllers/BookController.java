@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Optional;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "https://i-course.herokuapp.com", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class BookController {
@@ -47,7 +46,6 @@ public class BookController {
     @RequestMapping(value = "book/{bookId}", //
             method = RequestMethod.DELETE, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void deleteBook(@PathVariable("bookId") long bookId) {
         if(bookService.getBook(bookId) != null) {
@@ -58,7 +56,6 @@ public class BookController {
     @RequestMapping(value = "book/{bookId}", //
             method = RequestMethod.PUT, //
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void updateBook(@PathVariable("bookId") long bookId,
                            @Valid @ModelAttribute BookRequest bookModel) throws IOException, ParseException {

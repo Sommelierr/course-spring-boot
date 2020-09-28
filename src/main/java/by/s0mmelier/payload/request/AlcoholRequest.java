@@ -8,7 +8,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class AlcoholRequest {
     String name;
     List<String> tags;

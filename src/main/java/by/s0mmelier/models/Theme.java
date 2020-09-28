@@ -5,10 +5,14 @@ import by.s0mmelier.collections.BookCollection;
 import by.s0mmelier.collections.MarkCollection;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import lombok.experimental.PackagePrivate;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
+@Setter
+@PackagePrivate
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
@@ -18,40 +22,16 @@ import java.util.List;
 public class Theme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
 
-    private String name;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<BookCollection> bookCollections;
+    String name;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<AlcoholCollection> alcoholCollections;
+    List<BookCollection> bookCollections;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<MarkCollection> markCollections;
+    List<AlcoholCollection> alcoholCollections;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<BookCollection> getBookCollections() {
-        return bookCollections;
-    }
-
-    public void setBookCollections(List<BookCollection> bookCollections) {
-        this.bookCollections = bookCollections;
-    }
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<MarkCollection> markCollections;
 }

@@ -86,7 +86,7 @@ public class AlcoholService {
         Optional<Alcohol> alcohol = alcoholRepository.findById(id);
         AlcoholDto alcoholDto = new AlcoholDto();
         alcoholDto.setName(alcohol.get().getName());
-        alcoholDto.setTags(tagService.tagsToStringList(alcohol.get().getTags()));
+        alcoholDto.setTags(tagService.getTagsNames(alcohol.get().getTags()));
         alcoholDto.setCost(alcohol.get().getCost());
         alcoholDto.setPercent(alcohol.get().getPercent());
         alcoholDto.setVolume(alcohol.get().getVolume());
@@ -134,16 +134,18 @@ public class AlcoholService {
 
     public List<FindAlcoholDto> getAlcoholsByTag(String name){
         Tag tag = tagService.getByName(name);
-        List<FindAlcoholDto> alcoholDtos = new ArrayList<>();
-        for(Alcohol alcohol : tag.getAlcohols()){
-            System.out.println("aid" + alcohol.getId());
-            FindAlcoholDto alcoholDto = new FindAlcoholDto();
-            alcoholDto.setId(alcohol.getId());
-            alcoholDto.setCollectionId(alcohol.getAlcoholCollection().getId());
-            alcoholDto.setName(alcohol.getName());
-            alcoholDto.setUserId(alcohol.getAlcoholCollection().getUser().getId());
-            alcoholDtos.add(alcoholDto);
+        if(!tag.getAlcohols().isEmpty()) {
+            List<FindAlcoholDto> alcoholDtos = new ArrayList<>();
+            for (Alcohol alcohol : tag.getAlcohols()) {
+                FindAlcoholDto alcoholDto = new FindAlcoholDto();
+                alcoholDto.setId(alcohol.getId());
+                alcoholDto.setCollectionId(alcohol.getAlcoholCollection().getId());
+                alcoholDto.setName(alcohol.getName());
+                alcoholDto.setUserId(alcohol.getAlcoholCollection().getUser().getId());
+                alcoholDtos.add(alcoholDto);
+            }
+            return alcoholDtos;
         }
-        return alcoholDtos;
+        else return null;
     }
 }

@@ -1,10 +1,8 @@
 package by.s0mmelier.service;
 
 import by.s0mmelier.Dto.BookDto;
-import by.s0mmelier.Dto.FindAlcoholDto;
 import by.s0mmelier.Dto.FindBookDto;
 import by.s0mmelier.collections.BookCollection;
-import by.s0mmelier.models.Alcohol;
 import by.s0mmelier.models.Book;
 import by.s0mmelier.models.Tag;
 import by.s0mmelier.payload.request.BookRequest;
@@ -102,7 +100,7 @@ public class BookService {
         Optional<Book> book = bookRepository.findById(id);
         BookDto bookDto = new BookDto();
         bookDto.setName(book.get().getName());
-        bookDto.setTags(tagService.tagsToStringList(book.get().getTags()));
+        bookDto.setTags(tagService.getTagsNames(book.get().getTags()));
         bookDto.setCost(book.get().getCost());
         bookDto.setCountOfPages(book.get().getCountOfPages());
         bookDto.setWeight(book.get().getWeight());
@@ -137,17 +135,19 @@ public class BookService {
 
     public List<FindBookDto> getBooksByTag(String name){
         Tag tag = tagService.getByName(name);
-        List<FindBookDto> bookDtos = new ArrayList<>();
-        System.out.println(tag.getBooks() == null);
-        for(Book book : tag.getBooks()){
-            System.out.println("bid"+book.getId());
-            FindBookDto bookDto = new FindBookDto();
-            bookDto.setId(book.getId());
-            bookDto.setCollectionId(book.getBookCollection().getId());
-            bookDto.setName(book.getName());
-            bookDto.setUserId(book.getBookCollection().getUser().getId());
-            bookDtos.add(bookDto);
+        if(!tag.getBooks().isEmpty()) {
+            List<FindBookDto> bookDtos = new ArrayList<>();
+            System.out.println(tag.getBooks() == null);
+            for (Book book : tag.getBooks()) {
+                FindBookDto bookDto = new FindBookDto();
+                bookDto.setId(book.getId());
+                bookDto.setCollectionId(book.getBookCollection().getId());
+                bookDto.setName(book.getName());
+                bookDto.setUserId(book.getBookCollection().getUser().getId());
+                bookDtos.add(bookDto);
+            }
+            return bookDtos;
         }
-        return bookDtos;
+        else return null;
     }
 }

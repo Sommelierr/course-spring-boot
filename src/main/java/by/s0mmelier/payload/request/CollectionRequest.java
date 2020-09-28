@@ -1,9 +1,13 @@
 package by.s0mmelier.payload.request;
 
+import lombok.*;
+import lombok.experimental.PackagePrivate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 
+@Getter
+@Setter
 public class CollectionRequest {
 
     @NotBlank
@@ -14,36 +18,4 @@ public class CollectionRequest {
     private String theme;
 
     private MultipartFile image;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
-    }
-
-    public MultipartFile getImage() {
-        return image;
-    }
-
-    public void setImage(MultipartFile image) {
-        this.image = image;
-    }
 }

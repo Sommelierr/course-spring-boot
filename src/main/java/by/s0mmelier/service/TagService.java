@@ -15,6 +15,12 @@ public class TagService {
     @Autowired
     TagRepository tagRepository;
 
+    @Autowired
+    BookService bookService;
+
+    @Autowired
+    AlcoholService alcoholService;
+
     public Tag getByName(String name){
         return tagRepository.findByName(name);
     }
@@ -30,7 +36,7 @@ public class TagService {
         return tags;
     }
 
-    public List<String> tagsToStringList(List<Tag> tags){
+    public List<String> getTagsNames(List<Tag> tags){
         List<String> tagNames = new ArrayList<>();
         for(Tag tag : tags) tagNames.add(tag.getName());
         return tagNames;
@@ -52,4 +58,10 @@ public class TagService {
         else return null;
     }
 
+    public List<String> getItemTagsNames(String collectionType, long itemId){
+        if(collectionType.equals("bc")) return
+                getTagsNames(bookService.getBook(itemId).get().getTags());
+        else return
+                getTagsNames(alcoholService.getAlcohol(itemId).get().getTags());
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.net.BindException;
 
 @Service
 public class BookCollectionService {
@@ -28,12 +29,12 @@ public class BookCollectionService {
 
     public BookCollection createCollection(CollectionRequest collectionRequest) throws IOException {
         BookCollection bookCollection = new BookCollection();
-        bookCollection.setName(collectionRequest.getName());
-        bookCollection.setDescription(collectionRequest.getDescription());
-        bookCollection.setTheme(themeService.getByName(collectionRequest.getTheme()));
-        bookCollection.setImage(imageService.getByUrl(imageService.convertToImage(collectionRequest).getUrl()));
-        bookCollection.setCountOfBooks(0);
-        bookCollectionRepository.save(bookCollection);
+            bookCollection.setName(collectionRequest.getName());
+            bookCollection.setDescription(collectionRequest.getDescription());
+            bookCollection.setTheme(themeService.getByName(collectionRequest.getTheme()));
+            bookCollection.setImage(imageService.getByUrl(imageService.convertToImage(collectionRequest).getUrl()));
+            bookCollection.setCountOfBooks(0);
+            bookCollectionRepository.save(bookCollection);
         return bookCollection;
     }
 
