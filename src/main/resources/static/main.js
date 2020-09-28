@@ -507,7 +507,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //const API_URL = 'http://localhost:8080/api/user/';
-const API_URL = 'https://i-course.herokuapp.com/api/test/';
+const API_URL = 'https://i-course.herokuapp.com/api/user/';
 class UserService {
     constructor(http) {
         this.http = http;
