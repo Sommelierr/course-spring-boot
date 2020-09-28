@@ -16,26 +16,8 @@ public class HomeController {
     @Autowired
     HomeService homeService;
 
-    @Autowired
-    AlcoholService alcoholService;
-
-    @Autowired
-    BookService bookService;
-
-    @Autowired
-    CollectionService collectionService;
-
-    @Autowired
-    TagService tagService;
-
     @GetMapping("/home")
     public HomeDto getHome(){
-        HomeDto homeData = new HomeDto();
-        homeData.setAlcohol(alcoholService.getLast());
-        homeData.setBook(bookService.getLast());
-        homeData.setTags(tagService.toCloudTags(tagService.getAlltags()));
-        homeData.setAlcoholCollection(collectionService.getBiggestAlcoholHomeCollection());
-        homeData.setBookCollection(collectionService.getBiggestBookHomeCollection());
-        return homeData;
+        return homeService.getHomeData();
     }
 }

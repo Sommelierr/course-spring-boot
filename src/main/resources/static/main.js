@@ -944,8 +944,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const _c0 = ["fruitInput"];
-const _c1 = ["auto"];
+const _c0 = ["auto"];
 function AlcoholCreateComponent_div_0_div_9_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Name is required");
@@ -1361,7 +1360,7 @@ class AlcoholCreateComponent {
         this.addOnBlur = false;
         this.separatorKeysCodes = [_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_1__["ENTER"], _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_1__["COMMA"]];
         this.tagCtrl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
-        this.tags = ['Lemon'];
+        this.tags = ['Alcohol'];
     }
     ngOnInit() {
         this.setPathVariables();
@@ -1465,7 +1464,6 @@ class AlcoholCreateComponent {
     }
     selected(event) {
         this.tags.push(event.option.viewValue);
-        this.fruitInput.nativeElement.value = '';
         this.tagCtrl.setValue(null);
     }
     _filter(value) {
@@ -1499,10 +1497,8 @@ class AlcoholCreateComponent {
 AlcoholCreateComponent.ɵfac = function AlcoholCreateComponent_Factory(t) { return new (t || AlcoholCreateComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_item_service__WEBPACK_IMPORTED_MODULE_4__["ItemService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_collection_service__WEBPACK_IMPORTED_MODULE_5__["CollectionService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_token_storage_service__WEBPACK_IMPORTED_MODULE_6__["TokenStorageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_8__["NgxSpinnerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_user_service__WEBPACK_IMPORTED_MODULE_9__["UserService"])); };
 AlcoholCreateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AlcoholCreateComponent, selectors: [["app-alcohol-create"]], viewQuery: function AlcoholCreateComponent_Query(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵviewQuery"](_c0, true);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵviewQuery"](_c1, true);
     } if (rf & 2) {
         var _t;
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.fruitInput = _t.first);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.matAutocomplete = _t.first);
     } }, decls: 1, vars: 1, consts: [["class", "col-md-12", 4, "ngIf"], [1, "col-md-12"], [1, "card", "card-container"], ["name", "form", "novalidate", "", 3, "ngSubmit"], ["f", "ngForm"], [1, "form-group"], ["for", "name"], ["type", "text", "name", "name", "required", "", "minlength", "3", "maxlength", "20", 1, "form-control", 3, "ngModel", "ngModelChange"], ["name", "ngModel"], ["class", "alert-danger", 4, "ngIf"], [1, "demo-chip-list"], ["chipList", ""], [3, "selectable", "removable", "removed", 4, "ngFor", "ngForOf"], ["placeholder", "New tag...", "name", "tags", 3, "formControl", "matAutocomplete", "matChipInputFor", "matChipInputSeparatorKeyCodes", "matChipInputAddOnBlur", "matChipInputTokenEnd"], [3, "optionSelected"], ["auto", "matAutocomplete"], [3, "value", 4, "ngFor", "ngForOf"], ["class", "form-group", 4, "ngIf"], [1, "btn", "btn-primary", "btn-block"], [1, "alert-danger"], [4, "ngIf"], [3, "selectable", "removable", "removed"], ["matChipRemove", "", 4, "ngIf"], ["matChipRemove", ""], [3, "value"], ["for", "cost"], ["type", "number", "name", "cost", 3, "ngModel", "ngModelChange"], ["for", "percent"], ["type", "number", "name", "percent", 3, "ngModel", "ngModelChange"], ["for", "volume"], ["type", "number", "name", "volume", 3, "ngModel", "ngModelChange"], ["volume", "ngModel"], ["for", "manufacturer"], ["type", "text", "name", "manufacturer", 3, "ngModel", "ngModelChange"], ["manufacturer", "ngModel"], ["for", "grade"], ["type", "text", "name", "grade", "value", "8", 3, "ngModel", "ngModelChange"], ["grade", "ngModel"], ["for", "manufactureCountry"], ["type", "text", "name", "manufactureCountry", "value", "16", 3, "ngModel", "ngModelChange", 4, "ngIf"], ["type", "text", "name", "manufactureCountry", "value", "16", 3, "ngModel", "ngModelChange"], ["manufactureCountry", "ngModel"], ["for", "hasOneLiter"], ["type", "checkbox", "name", "hasOneLiter", "value", "1", 3, "ngModel", "ngModelChange"], ["hasOneLiter", "ngModel"], ["for", "hasTwoLiters"], ["type", "checkbox", "name", "hasTwoLiters", "value", "1", 3, "ngModel", "ngModelChange"], ["hasTwoLiters", "ngModel"], ["for", "hasFiveLiters"], ["type", "checkbox", "name", "hasFiveLiters", "value", "1", 3, "ngModel", "ngModelChange"], ["hasFiveLiters", "ngModel"], ["for", "comment"], ["type", "text", "name", "comment", "value", "512", 3, "ngModel", "ngModelChange"], ["comment", "ngModel"], ["for", "history"], ["type", "text", "name", "history", "value", "1024", 3, "ngModel", "ngModelChange"], ["history", "ngModel"], ["for", "recommendation"], ["type", "text", "name", "recommendation", "value", "2048", 3, "ngModel", "ngModelChange"], ["recommendation", "ngModel"], ["for", "manufactureDate"], ["type", "date", "name", "manufactureDate", "value", "4096", 3, "ngModel", "ngModelChange"], ["manufactureDate", "ngModel"], ["for", "developmentDate"], ["type", "date", "name", "developmentDate", "value", "8192", 3, "ngModel", "ngModelChange"], ["developmentDate", "ngModel"], ["for", "manufactureDateInBelarus"], ["type", "date", "name", "manufactureDateInBelarus", "value", "16384", 3, "ngModel", "ngModelChange"], ["manufactureDateInBelarus", "ngModel"]], template: function AlcoholCreateComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, AlcoholCreateComponent_div_0_Template, 38, 26, "div", 0);
@@ -1516,10 +1512,7 @@ AlcoholCreateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
                 templateUrl: './alcohol-create.component.html',
                 styleUrls: ['./alcohol-create.component.css']
             }]
-    }], function () { return [{ type: _services_item_service__WEBPACK_IMPORTED_MODULE_4__["ItemService"] }, { type: _services_collection_service__WEBPACK_IMPORTED_MODULE_5__["CollectionService"] }, { type: _services_token_storage_service__WEBPACK_IMPORTED_MODULE_6__["TokenStorageService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] }, { type: ngx_spinner__WEBPACK_IMPORTED_MODULE_8__["NgxSpinnerService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"] }, { type: _services_user_service__WEBPACK_IMPORTED_MODULE_9__["UserService"] }]; }, { fruitInput: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"],
-            args: ['fruitInput']
-        }], matAutocomplete: [{
+    }], function () { return [{ type: _services_item_service__WEBPACK_IMPORTED_MODULE_4__["ItemService"] }, { type: _services_collection_service__WEBPACK_IMPORTED_MODULE_5__["CollectionService"] }, { type: _services_token_storage_service__WEBPACK_IMPORTED_MODULE_6__["TokenStorageService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] }, { type: ngx_spinner__WEBPACK_IMPORTED_MODULE_8__["NgxSpinnerService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"] }, { type: _services_user_service__WEBPACK_IMPORTED_MODULE_9__["UserService"] }]; }, { matAutocomplete: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"],
             args: ['auto']
         }] }); })();
@@ -3913,8 +3906,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const _c0 = ["fruitInput"];
-const _c1 = ["auto"];
+const _c0 = ["auto"];
 function BookCreateComponent_div_0_div_9_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Name is required");
@@ -4330,7 +4322,7 @@ class BookCreateComponent {
         this.addOnBlur = false;
         this.separatorKeysCodes = [_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_1__["ENTER"], _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_1__["COMMA"]];
         this.tagCtrl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
-        this.tags = ['Lemon'];
+        this.tags = ['Book'];
     }
     ngOnInit() {
         this.setPathVariables();
@@ -4431,7 +4423,6 @@ class BookCreateComponent {
     }
     selected(event) {
         this.tags.push(event.option.viewValue);
-        this.fruitInput.nativeElement.value = '';
         this.tagCtrl.setValue(null);
     }
     _filter(value) {
@@ -4465,10 +4456,8 @@ class BookCreateComponent {
 BookCreateComponent.ɵfac = function BookCreateComponent_Factory(t) { return new (t || BookCreateComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_item_service__WEBPACK_IMPORTED_MODULE_4__["ItemService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_collection_service__WEBPACK_IMPORTED_MODULE_6__["CollectionService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](ngx_spinner__WEBPACK_IMPORTED_MODULE_9__["NgxSpinnerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_8__["ActivatedRoute"])); };
 BookCreateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: BookCreateComponent, selectors: [["app-book-create"]], viewQuery: function BookCreateComponent_Query(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵviewQuery"](_c0, true);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵviewQuery"](_c1, true);
     } if (rf & 2) {
         var _t;
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.fruitInput = _t.first);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.matAutocomplete = _t.first);
     } }, decls: 1, vars: 1, consts: [["class", "col-md-12", 4, "ngIf"], [1, "col-md-12"], [1, "card", "card-container"], ["name", "form", "novalidate", "", 3, "ngSubmit"], ["f", "ngForm"], [1, "form-group"], ["for", "name"], ["type", "text", "name", "name", "required", "", "minlength", "3", "maxlength", "20", 1, "form-control", 3, "ngModel", "ngModelChange"], ["name", "ngModel"], ["class", "alert-danger", 4, "ngIf"], [1, "demo-chip-list"], ["chipList", ""], [3, "selectable", "removable", "removed", 4, "ngFor", "ngForOf"], ["placeholder", "New tag...", "name", "tags", 3, "formControl", "matAutocomplete", "matChipInputFor", "matChipInputSeparatorKeyCodes", "matChipInputAddOnBlur", "matChipInputTokenEnd"], [3, "optionSelected"], ["auto", "matAutocomplete"], [3, "value", 4, "ngFor", "ngForOf"], ["class", "form-group", 4, "ngIf"], [1, "btn", "btn-primary", "btn-block"], [1, "alert-danger"], [4, "ngIf"], [3, "selectable", "removable", "removed"], ["matChipRemove", "", 4, "ngIf"], ["matChipRemove", ""], [3, "value"], ["for", "cost"], ["type", "number", "name", "cost", 3, "ngModel", "ngModelChange"], ["for", "countOfPages"], ["type", "number", "name", "countOfPages", 3, "ngModel", "ngModelChange"], ["countOfPages", "ngModel"], ["for", "weight"], ["type", "number", "name", "weight", 3, "ngModel", "ngModelChange"], ["weight", "ngModel"], ["for", "author"], ["type", "text", "name", "author", "value", "8", 3, "ngModel", "ngModelChange"], ["author", "ngModel"], ["for", "genre"], ["type", "text", "name", "genre", "value", "16", 3, "ngModel", "ngModelChange", 4, "ngIf"], ["type", "text", "name", "genre", "value", "16", 3, "ngModel", "ngModelChange"], ["genre", "ngModel"], ["for", "publisher"], ["type", "text", "name", "publisher", "value", "32", 3, "ngModel", "ngModelChange"], ["publisher", "ngModel"], ["for", "itSerial"], ["type", "checkbox", "name", "itSerial", "value", "1", 3, "ngModel", "ngModelChange"], ["itSerial", "ngModel"], ["for", "hasAudio"], ["type", "checkbox", "name", "hasAudio", "value", "1", 3, "ngModel", "ngModelChange"], ["hasAudio", "ngModel"], ["for", "hasFilm"], ["type", "checkbox", "name", "hasFilm", "value", "1", 3, "ngModel", "ngModelChange"], ["hasFilm", "ngModel"], ["for", "comment"], ["type", "text", "name", "comment", "value", "512", 3, "ngModel", "ngModelChange"], ["comment", "ngModel"], ["for", "summary"], ["type", "text", "name", "summary", "value", "1024", 3, "ngModel", "ngModelChange"], ["summary", "ngModel"], ["for", "recommendation"], ["type", "text", "name", "recommendation", "value", "2048", 3, "ngModel", "ngModelChange"], ["recommendation", "ngModel"], ["for", "publishingDateOnEnglish"], ["type", "date", "name", "publishingDateOnEnglish", "value", "4096", 3, "ngModel", "ngModelChange"], ["publishingDateOnEnglish", "ngModel"], ["for", "publishingDateOnRussian"], ["type", "date", "name", "publishingDateOnRussian", "value", "8192", 3, "ngModel", "ngModelChange"], ["publishingDateOnRussian", "ngModel"], ["for", "publishingDateOnJapan"], ["type", "date", "name", "publishingDateOnJapan", "value", "16384", 3, "ngModel", "ngModelChange"], ["publishingDateOnJapan", "ngModel"]], template: function BookCreateComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, BookCreateComponent_div_0_Template, 38, 26, "div", 0);
@@ -4482,10 +4471,7 @@ BookCreateComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
                 templateUrl: './book-create.component.html',
                 styleUrls: ['./book-create.component.css']
             }]
-    }], function () { return [{ type: _services_item_service__WEBPACK_IMPORTED_MODULE_4__["ItemService"] }, { type: _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"] }, { type: _services_collection_service__WEBPACK_IMPORTED_MODULE_6__["CollectionService"] }, { type: _services_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"] }, { type: ngx_spinner__WEBPACK_IMPORTED_MODULE_9__["NgxSpinnerService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__["ActivatedRoute"] }]; }, { fruitInput: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"],
-            args: ['fruitInput']
-        }], matAutocomplete: [{
+    }], function () { return [{ type: _services_item_service__WEBPACK_IMPORTED_MODULE_4__["ItemService"] }, { type: _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"] }, { type: _services_collection_service__WEBPACK_IMPORTED_MODULE_6__["CollectionService"] }, { type: _services_token_storage_service__WEBPACK_IMPORTED_MODULE_7__["TokenStorageService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"] }, { type: ngx_spinner__WEBPACK_IMPORTED_MODULE_9__["NgxSpinnerService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__["ActivatedRoute"] }]; }, { matAutocomplete: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"],
             args: ['auto']
         }] }); })();
